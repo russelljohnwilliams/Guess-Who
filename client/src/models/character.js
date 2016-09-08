@@ -4,7 +4,6 @@ var Character = function(params){
   this.glasses = params.glasses;
   this.beard = params.beard;
   this.hat = params.hat;
-
 }
 
 module.exports = Character;

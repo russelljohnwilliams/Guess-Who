@@ -5,7 +5,7 @@ describe('character', function(){
   
   beforeEach(function(){
     character = new Character({name:'Frank', hair:'yes', glasses:'no', beard:'no', hat:'yes'});
-  })
+  });
 
   it('Chracter whould have a name ', function(){
     assert.equal('Frank', character.name);
