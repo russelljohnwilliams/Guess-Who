@@ -2,6 +2,8 @@ var GuessWho = require('../guessWho');
 var Character = require('../character');
 var assert = require('chai').assert;
 var mocha = require('mocha');
+var _ = require('lodash');
+
 
 describe('guessWho', function(){
   
@@ -21,8 +23,14 @@ describe('guessWho', function(){
 
 // this test works!
   it('Can return random character from array (can not test this)', function(){
-    character = guessWho.characterToGuess(guessWho.charactersArray);
+    character = guessWho.selectACharacter(guessWho.charactersArray);
     console.log("randomly selected character is: ", character.name);
+  })
+
+  it('can add randomly chosen character to "chosenCharacter" array', function(){
+    character = guessWho.setChosenCharacter();
+    assert.equal(0, guessWho.chosenCharacter.length);
+    console.log("chosen character name: ", character)
   })
 
 })
