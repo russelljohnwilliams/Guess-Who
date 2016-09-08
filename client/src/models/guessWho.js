@@ -1,5 +1,6 @@
 var _ = require('lodash');
 
+
 var GuessWho = function(){
   this.charactersArray = [];
   this.chosenCharacter = [];
@@ -11,19 +12,27 @@ addCharacter: function(character){
   this.charactersArray.push(character);
 },
 
-
-selectACharacter: function(charactersArray){
-  character = _.sample(charactersArray);
-  return character; 
+setTheGameCharacter: function(){
+  character = _.sample(this.charactersArray);
+  this.chosenCharacter.push(character);
 },
 
-setChosenCharacter: function(){
-  this.chosenCharacter = []
-  character = this.selectACharacter();
-  return character;
-  // this.chosenCharacter.push(character);
-}
+// selectACharacter: function(){
+//   random = _.random(0, this.charactersArray.length)
+//   // this.charactersArray = _.shuffle(charactersArray);
+//   return _.pullAt(this.charactersArray, random);
+//   // this.chosenCharacter.push(character);
+//   // return character; 
+// },
 
+// setChosenCharacter: function(){
+//   character = this.selectACharacter();
+//   this.chosenCharacter.push(character);
+// },
+ 
+ getChosenCharacter: function(){
+  return this.chosenCharacter.pop();
+ }
 
 
 }
