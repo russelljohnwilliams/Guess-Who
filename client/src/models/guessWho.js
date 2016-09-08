@@ -1,17 +1,18 @@
 var _ = require('lodash');
 
 var GuessWho = function(){
-  this.characters = [];
+  this.charactersArray = [];
 }
 
 GuessWho.prototype = {
 
 addCharacter: function(character){
-  this.characters.push(character);
+  this.charactersArray.push(character);
 },
 
-characterToGuess: function(characters){
-  _.sample(characters, [n]) 
+characterToGuess: function(charactersArray){
+  character = _.sample(charactersArray);
+  return character; 
 }
 
 
