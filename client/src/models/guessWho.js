@@ -19,7 +19,16 @@ setTheGameCharacter: function(){
  
  getChosenCharacter: function(){
   return this.chosenCharacter.pop();
- }
+ },
+
+ // doesCharacterHaveAHat: function(){
+ //  if ( === "hat"){
+ //    return "Yes, the character does indeed have a hat"
+ //  }
+ //  else{
+ //    return "No, I'm sad to say the character does not have a hat"
+ //  }
+ // }
 
 
 }
