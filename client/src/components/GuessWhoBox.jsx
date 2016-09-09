@@ -11,8 +11,6 @@ var GuessWhoBox = React.createClass({
 
   },
 
-
-
   render: function(){
     return(
       <div>

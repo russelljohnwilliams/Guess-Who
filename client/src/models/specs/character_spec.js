@@ -4,27 +4,11 @@ var assert = require('assert');
 describe('character', function(){
   
   beforeEach(function(){
-    character = new Character({name:'Frank', hair:'yes', glasses:'no', beard:'no', hat:'yes'});
+    character = new Character({name:'Alfred', hair:'blonde', glasses:'no', beard:'yes', hat:'no', gender: 'male', smile: 'no', glasses: 'no', pic: './src/models/img/alfred.png'});
   });
 
   it('Chracter whould have a name ', function(){
-    assert.equal('Frank', character.name);
-  });
-
-  it('Does character have hair ', function(){
-    assert.equal('yes', character.hair);
-  });
-
-  it('Chracter whould have a name ', function(){
-    assert.equal('no', character.glasses);
-  });
-
-  it('Chracter whould have a name ', function(){
-    assert.equal('no', character.beard);
-  });
-
-  it('Chracter whould have a name ', function(){
-    assert.equal('yes', character.hat);
+    assert.equal('Alfred', character.name);
   });
 
 
