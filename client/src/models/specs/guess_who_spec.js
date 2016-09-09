@@ -37,11 +37,13 @@ it("can get chosen character name from array", function(){
 
 it("can give yes answer if we have chosen the character correctly", function(){
   guessWho.addCharacterToChosenCharacterArray(alfred);
-  console.log("it should be alfred: ", guessWho.chosenCharacter[0].name)
   assert.equal("yes, the character is called Alfred", guessWho.isTheCharacter("Alfred"));
 })
 
-it
+it("can give no answer if we have chosen the character correctly", function(){
+  guessWho.addCharacterToChosenCharacterArray(anita);
+  assert.equal("Sorry, you have chosen incorrectly", guessWho.isTheCharacter("Alfred"));
+})
 
 })
 

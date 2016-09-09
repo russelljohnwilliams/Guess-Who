@@ -19892,10 +19892,10 @@
 	  },
 	
 	  isTheCharacter: function isTheCharacter(attribute) {
-	    if (this.chosenCharacter[0].name === attribute) {
+	    if (attribute === this.chosenCharacter[0].name) {
 	      return "yes, the character is called " + attribute;
 	    } else {
-	      "Sorry, you have chosen incorrectly";
+	      return "Sorry, you have chosen incorrectly";
 	    }
 	  }
 	
