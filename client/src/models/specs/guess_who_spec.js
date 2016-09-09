@@ -24,15 +24,36 @@ describe('guessWho', function(){
 
 // this test works  !
 it('Can return random character from array (can not test this)', function(){
-  guessWho.setTheGameCharacter();
+  guessWho.selectTheGameCharacter();
   console.log("randomly selected character is: ", guessWho.chosenCharacter[0].name);
 })
 
 // this test works  !
 it("can get chosen character name from array", function(){
-  guessWho.setTheGameCharacter();
+  guessWho.selectTheGameCharacter();
   name = guessWho.getChosenCharacter()
   console.log("is it frank, is it barbara or is it undefined???: ", name.name)
 })
 
+it("can give yes answer if we have chosen the character correctly", function(){
+  guessWho.addCharacterToChosenCharacterArray(alfred);
+  console.log("it should be alfred: ", guessWho.chosenCharacter[0].name)
+  assert.equal("yes, the character is called Alfred", guessWho.isTheCharacter("Alfred"));
 })
+
+it
+
+})
+
+
+
+
+
+
+
+
+
+
+
+
+

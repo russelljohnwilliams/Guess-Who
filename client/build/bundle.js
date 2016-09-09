@@ -19754,18 +19754,30 @@
 
 	'use strict';
 	
-	var React = __webpack_require__(1);
+	function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 	
-	var GuessWho = __webpack_require__(160);
+	var React = __webpack_require__(1);
+	var CharacterSelect = __webpack_require__(160);
+	var GuessWho = __webpack_require__(161);
 	
 	var GuessWhoBox = React.createClass({
 	  displayName: 'GuessWhoBox',
 	
 	
 	  getInitialState: function getInitialState() {
-	    var game = new GuessWho();
+	    var _ref, _ref2;
 	
-	    return { game: game };
+	    var sampleData = [(_ref = { name: 'Alfred', hair: 'blonde', glasses: 'no', beard: 'yes', hat: 'no', gender: 'male', smile: 'no' }, _defineProperty(_ref, 'glasses', 'no'), _defineProperty(_ref, 'pic', './src/models/img/alfred.png'), _ref), (_ref2 = { name: 'Anita', hair: 'blonde', glasses: 'no', beard: 'no', hat: 'no', gender: 'female', smile: 'yes' }, _defineProperty(_ref2, 'glasses', 'no'), _defineProperty(_ref2, 'pic', './src/models/img/anita.png'), _ref2)];
+	
+	    var guessWho = new GuessWho();
+	
+	    return { guessWho: guessWho };
+	  },
+	
+	  handleAttributeSubmit: function handleAttributeSubmit() {
+	    var result = this.state.guessWho.doesCharacterHave(attribute);
+	    console.log(result);
+	    this.setState({ selectedAccount: result });
 	  },
 	
 	  render: function render() {
@@ -19776,7 +19788,8 @@
 	        'h3',
 	        null,
 	        'Guess Who!'
-	      )
+	      ),
+	      React.createElement(CharacterSelect, { onAttributeSubmit: this.handleAttributeSubmit })
 	    );
 	  }
 	
@@ -19788,9 +19801,71 @@
 /* 160 */
 /***/ function(module, exports, __webpack_require__) {
 
-	'use strict';
+	"use strict";
 	
-	var _ = __webpack_require__(161);
+	var React = __webpack_require__(1);
+	
+	var CharacterSelect = React.createClass({
+	  displayName: "CharacterSelect",
+	
+	
+	  getInitialState: function getInitialState() {
+	    return { attribute: null };
+	  },
+	
+	  handleSelect: function handleSelect(e) {
+	    this.setState({ attribute: e.target.value });
+	  },
+	
+	  // handleOwnerChange: function(e){
+	  //   this.setState({owner: e.target.value})
+	  // },
+	
+	  // handleSubmit: function(e){
+	  //   e.preventDefault()
+	  //   var owner = this.state.owner.trim()
+	  //   console.log(owner)
+	  //   if (!owner){
+	  //     return
+	  //   }
+	  //   this.props.onCommentSubmit(owner)
+	  // },
+	
+	
+	  render: function render() {
+	    return React.createElement(
+	      "select",
+	      { value: "nothing", onChange: this.handleSelect },
+	      React.createElement(
+	        "option",
+	        { value: "glasses", key: "glasses" },
+	        "are they person wearing glasses?"
+	      ),
+	      ",",
+	      React.createElement(
+	        "option",
+	        { value: "beard", key: "beard" },
+	        "have they got themselves a beard or moustache?"
+	      ),
+	      ",",
+	      React.createElement(
+	        "option",
+	        { value: "hat", key: "hat" },
+	        "are they wearing a fetching hat?"
+	      )
+	    );
+	  }
+	});
+	
+	module.exports = CharacterSelect;
+
+/***/ },
+/* 161 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+	
+	var _ = __webpack_require__(162);
 	
 	var GuessWho = function GuessWho() {
 	  this.charactersArray = [];
@@ -19803,21 +19878,43 @@
 	    this.charactersArray.push(character);
 	  },
 	
-	  setTheGameCharacter: function setTheGameCharacter() {
+	  selectTheGameCharacter: function selectTheGameCharacter() {
 	    character = _.sample(this.charactersArray);
+	    this.addCharacterToChosenCharacterArray(character);
+	  },
+	
+	  addCharacterToChosenCharacterArray: function addCharacterToChosenCharacterArray(character) {
 	    this.chosenCharacter.push(character);
 	  },
 	
 	  getChosenCharacter: function getChosenCharacter() {
 	    return this.chosenCharacter.pop();
+	  },
+	
+	  isTheCharacter: function isTheCharacter(attribute) {
+	    if (this.chosenCharacter[0].name === attribute) {
+	      return "yes, the character is called " + attribute;
+	    } else {
+	      "Sorry, you have chosen incorrectly";
+	    }
 	  }
+	
+	  // doesCharacterHaveAHat: function(){
+	  //  if ( === "hat"){
+	  //    return "Yes, the character does indeed have a hat"
+	  //  }
+	  //  else{
+	  //    return "No, I'm sad to say the character does not have a hat"
+	  //  }
+	  // }
+	
 	
 	};
 	
 	module.exports = GuessWho;
 
 /***/ },
-/* 161 */
+/* 162 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __WEBPACK_AMD_DEFINE_RESULT__;/* WEBPACK VAR INJECTION */(function(global, module) {/**
@@ -36554,10 +36651,10 @@
 	  }
 	}.call(this));
 	
-	/* WEBPACK VAR INJECTION */}.call(exports, (function() { return this; }()), __webpack_require__(162)(module)))
+	/* WEBPACK VAR INJECTION */}.call(exports, (function() { return this; }()), __webpack_require__(163)(module)))
 
 /***/ },
-/* 162 */
+/* 163 */
 /***/ function(module, exports) {
 
 	module.exports = function(module) {
