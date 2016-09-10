@@ -19793,10 +19793,18 @@
 	    return { guessWho: guessWho };
 	  },
 	
+	  setGameCharacter: function setGameCharacter() {
+	    var characters = this.state.guessWho.characters;
+	    console.log(characters);
+	    // this.state.guessWho.selectTheGameCharacter(characters)
+	    console.log("character is", this.state.guessWho.chosenCharacter[0]);
+	  },
+	
 	  handleAttributeSubmit: function handleAttributeSubmit(attribute) {
-	    this.state.guessWho.selectTheGameCharacter();
+	
 	    // var result = this.state.guessWho.doesCharacterHave(attribute);
-	    console.log(attribute);
+	    console.log("Handle this here attribute", attribute);
+	    this.state.guessWho.doesCharacterHave(attribute);
 	    // this.setState({selectedAccount: result})
 	  },
 	
@@ -19808,6 +19816,11 @@
 	        'h3',
 	        null,
 	        'Guess Who!'
+	      ),
+	      React.createElement(
+	        'button',
+	        { onClick: this.setGameCharacter, className: 'button' },
+	        ' start new game '
 	      ),
 	      React.createElement(CharacterSelect, { onAttributeSubmit: this.handleAttributeSubmit })
 	    );
@@ -19823,13 +19836,9 @@
 
 	"use strict";
 	
-	var _React$createClass;
-	
-	function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-	
 	var React = __webpack_require__(1);
 	
-	var CharacterSelect = React.createClass((_React$createClass = {
+	var CharacterSelect = React.createClass({
 	  displayName: "CharacterSelect",
 	
 	
@@ -19838,85 +19847,86 @@
 	  },
 	
 	  handleSelect: function handleSelect(e) {
-	    this.setState({ attribute: e.target.value });
+	    e.preventDefault();
+	    var attribute = e.target.value;
+	    this.setState({ attribute: attribute });
+	    this.props.onAttributeSubmit(attribute);
+	  },
+	
+	  render: function render() {
+	
+	    return React.createElement(
+	      "select",
+	      { value: "nothing", onChange: this.handleSelect },
+	      React.createElement(
+	        "option",
+	        { key: "nowt" },
+	        "Please select"
+	      ),
+	      ",",
+	      React.createElement(
+	        "option",
+	        { value: "blonde", key: "blonde" },
+	        "Is this person a natural blonde?"
+	      ),
+	      ",",
+	      React.createElement(
+	        "option",
+	        { value: "brown", key: "brown" },
+	        "Is this person a brunette?"
+	      ),
+	      ",",
+	      React.createElement(
+	        "option",
+	        { value: "white", key: "white" },
+	        "Has this person got white hair"
+	      ),
+	      ",",
+	      React.createElement(
+	        "option",
+	        { value: "bald", key: "bald" },
+	        "Is this person a baldy?"
+	      ),
+	      ",",
+	      React.createElement(
+	        "option",
+	        { value: "glasses", key: "glasses" },
+	        "Is this person wearing spectacles?"
+	      ),
+	      ",",
+	      React.createElement(
+	        "option",
+	        { value: "beard", key: "beard" },
+	        "Is there facial hair of some description present?"
+	      ),
+	      ",",
+	      React.createElement(
+	        "option",
+	        { value: "hat", key: "hat" },
+	        "Is this person wearing a hat?"
+	      ),
+	      ",",
+	      React.createElement(
+	        "option",
+	        { value: "smile", key: "smile" },
+	        "Does this person have a beaming great big smile?"
+	      ),
+	      ",",
+	      React.createElement(
+	        "option",
+	        { value: "female", key: "female" },
+	        "Is this person a lady of some description?"
+	      ),
+	      ",",
+	      React.createElement(
+	        "option",
+	        { value: "male", key: "male" },
+	        "Is the person of the male variety?"
+	      ),
+	      ","
+	    );
 	  }
-	
-	}, _defineProperty(_React$createClass, "handleSelect", function handleSelect(e) {
-	  e.preventDefault();
-	  var attribute = e.target.value;
-	  this.setState({ attribute: attribute });
-	}), _defineProperty(_React$createClass, "handleSubmit", function handleSubmit(e) {
-	  e.preventDefault();
-	  console.log("this.state.attribute = ", this.state.attribute);
-	  // this.props.onAttributeSubmit(this.state.attribute)
-	}), _defineProperty(_React$createClass, "render", function render() {
-	
-	  return React.createElement(
-	    "div",
-	    { "class": "dropdown" },
-	    React.createElement(
-	      "button",
-	      { onclick: "myFunction()", "class": "dropbtn" },
-	      "Dropdown"
-	    ),
-	    React.createElement(
-	      "div",
-	      { id: "myDropdown", "class": "dropdown-content" },
-	      React.createElement(
-	        "a",
-	        { href: "#" },
-	        "Link 1"
-	      ),
-	      React.createElement(
-	        "a",
-	        { href: "#" },
-	        "Link 2"
-	      ),
-	      React.createElement(
-	        "a",
-	        { href: "#" },
-	        "Link 3"
-	      )
-	    )
-	  );
-	  // return(
-	  //   <select value="nothing" onChange={this.handleSelect}  >
-	  //   <option key="nowt">
-	  //   Please select 
-	  //   </option>,
-	  //   <option value="blonde" key="blonde">
-	  //   Is this person a natural blonde?
-	  //   </option>,
-	  //   <option value="brown" key="brown">
-	  //   Is this person a brunette?
-	  //   </option>,
-	  //   <option value="white" key="white">
-	  //   Has this person got white hair       
-	  //   </option>,
-	  //   <option value="bald" key="bald">
-	  //   Is this person a baldy?
-	  //   </option>,
-	  //   <option value="glasses" key="glasses">
-	  //   Is this person wearing spectacles?
-	  //   </option>,
-	  //   <option value="beard" key="beard">
-	  //   Is there facial hair of some description present?
-	  //   </option>,
-	  //   <option value="hat" key="hat">
-	  //   Is this person wearing a hat?
-	  //   </option>,
-	  //   <option value="smile" key="smile">
-	  //   Does this person have a beaming great big smile?
-	  //   </option>,
-	  //   <option value="female" key="female">
-	  //   Is this person a lady of some description?
-	  //   </option>,
-	  //   <option value="male" key="male">
-	  //   Is the person of the male variety?
-	  //   </option>,
-	  //   </select>
-	  //   )
-	}), _React$createClass));
+	});
 	
 	module.exports = CharacterSelect;
 
@@ -19961,14 +19971,21 @@
 	  },
 	
 	  doesCharacterHave: function doesCharacterHave(value) {
-	    switch (value) {
 	
+	    console.log(value);
+	
+	    value = _.toString(value);
+	    console.log(value);
+	
+	    switch (value) {
 	      case "blonde":
 	
 	        if (this.chosenCharacter[0].blonde === true) {
 	          return "Yes, they do have blonde hair.";
+	          console.log("Yes, they do have blonde hair.");
 	        } else {
 	          return "Nope, they don't have blonde hair.";
+	          console.log("Nope, they don't have blonde hair.");
 	        }
 	        break;
 	

@@ -11,27 +11,27 @@ describe('guessWho', function(){
   beforeEach(function(){
     guessWho = new GuessWho();
     alfred = new Character({name:'Alfred',
-    blonde:true, 
+    blonde: true, 
     brown: false,
     white: false,
     bald: false,
-    glasses:false, 
-    beard:true, 
-    hat:false,  
+    glasses: false, 
+    beard: true, 
+    hat: false,  
     smile: false, 
     female: false,
     male: true,
     pic: './src/models/img/alfred.png'});
     
     anita = new Character({name:'Anita',
-    blonde:true, 
+    blonde: true, 
     brown: false,
     white: false,
     bald: false,
-    glasses:false, 
-    beard:false, 
-    hat:false,  
-    smile:true, 
+    glasses: false, 
+    beard: false, 
+    hat: false,  
+    smile: true, 
     female: true,
     male: false,
     pic: './src/models/img/anita.png'});
@@ -48,14 +48,14 @@ describe('guessWho', function(){
 // this test works  !
 it('Can return random character from array (can not test this)', function(){
   guessWho.selectTheGameCharacter();
-  console.log("randomly selected character is: ", guessWho.chosenCharacter[0].name);
+  console.log("randomly selected character is: ", guessWho.chosenCharacter[0]);
 })
 
 // this test works  !
 it("can get chosen character name from array", function(){
   guessWho.selectTheGameCharacter();
   name = guessWho.getChosenCharacter()
-  console.log("is it frank, is it barbara or is it undefined???: ", name.name)
+  console.log("is it frank, is it barbara or is it undefined???: ", name)
 })
 
 it("can give yes answer if we have chosen the character correctly", function(){

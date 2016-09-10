@@ -1,9 +1,9 @@
 var Character = function(params){
   this.name = params.name;
-  this.blonde = params.hair;
-  this.brown = params.hair;
-  this.white = params.hair;
-  this.bald = params.hair;
+  this.blonde = params.blonde;
+  this.brown = params.brown;
+  this.white = params.white;
+  this.bald = params.bald;
   this.glasses = params.glasses;
   this.beard = params.beard;
   this.hat = params.hat;

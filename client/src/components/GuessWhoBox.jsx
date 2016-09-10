@@ -8,13 +8,13 @@ var GuessWhoBox = React.createClass({
 
     var characters = [
     {name:'Alfred',
-    blonde:true, 
+    blonde: true, 
     brown: false,
     white: false,
     bald: false,
-    glasses:false, 
-    beard:true, 
-    hat:false,  
+    glasses: false, 
+    beard: true, 
+    hat: false,  
     smile: false, 
     female: false,
     male: true,
@@ -38,10 +38,18 @@ var GuessWhoBox = React.createClass({
     return{guessWho: guessWho}
   },
 
+  setGameCharacter: function(){
+    var characters = this.state.guessWho.characters
+    console.log(characters)
+    // this.state.guessWho.selectTheGameCharacter(characters)
+    console.log("character is", this.state.guessWho.chosenCharacter[0])
+  },
+
   handleAttributeSubmit: function(attribute){
-    this.state.guessWho.selectTheGameCharacter();
+    
     // var result = this.state.guessWho.doesCharacterHave(attribute);
-    console.log(attribute);
+    console.log("Handle this here attribute", attribute)
+    this.state.guessWho.doesCharacterHave(attribute)
     // this.setState({selectedAccount: result})
   },
 
@@ -49,6 +57,7 @@ var GuessWhoBox = React.createClass({
     return(
       <div>
       <h3>Guess Who!</h3>
+      <button onClick={this.setGameCharacter} className="button"> start new game </button> 
       <CharacterSelect onAttributeSubmit={this.handleAttributeSubmit}/>
       </div>
       )
