@@ -42,7 +42,7 @@ GuessWho.prototype = {
 //  }
 // },
 
-switchFunction: function(value){
+doesCharacterHave: function(value){
   switch(value){ 
     
   case "blonde":

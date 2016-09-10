@@ -19927,7 +19927,7 @@
 	  //  }
 	  // },
 	
-	  switchFunction: function switchFunction(value) {
+	  doesCharacterHave: function doesCharacterHave(value) {
 	    switch (value) {
 	
 	      case "blonde":
