@@ -71,23 +71,23 @@ it("can give no answer if we have chosen the character correctly", function(){
 
 it ("can ask about an attribute they do not have", function(){
   guessWho.addCharacterToChosenCharacterArray(anita);
-  assert.equal("no", guessWho.doesCharacterHave("brown"));
+  assert.equal("That aint no man... Definately a woman, born that way or not.", guessWho.doesCharacterHave("male"));
 })
 
 
 it ("can ask about another attribute they do not have", function(){
   guessWho.addCharacterToChosenCharacterArray(alfred);
-  assert.equal("no", guessWho.doesCharacterHave("bald"));
+  assert.equal("White? White hair? No I don't think so.", guessWho.doesCharacterHave("white"));
 })
 
 it ("can ask about an attribute they do have", function(){
   guessWho.addCharacterToChosenCharacterArray(anita);
-  assert.equal("yes", guessWho.doesCharacterHave("smile"));
+  assert.equal("She may not be a lady, but she's all woman.", guessWho.doesCharacterHave("female"));
 })
 
 it ("can ask about another attribute they do have", function(){
   guessWho.addCharacterToChosenCharacterArray(alfred);
-  assert.equal("yes", guessWho.doesCharacterHave("beard"));
+  assert.equal("Yeah, stupid hipster.", guessWho.doesCharacterHave("beard"));
 })
 
 

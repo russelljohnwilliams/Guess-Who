@@ -19793,10 +19793,11 @@
 	    return { guessWho: guessWho };
 	  },
 	
-	  handleAttributeSubmit: function handleAttributeSubmit() {
-	    var result = this.state.guessWho.doesCharacterHave(attribute);
-	    console.log(result);
-	    this.setState({ selectedAccount: result });
+	  handleAttributeSubmit: function handleAttributeSubmit(attribute) {
+	    this.state.guessWho.selectTheGameCharacter();
+	    // var result = this.state.guessWho.doesCharacterHave(attribute);
+	    console.log(attribute);
+	    // this.setState({selectedAccount: result})
 	  },
 	
 	  render: function render() {
@@ -19822,9 +19823,13 @@
 
 	"use strict";
 	
+	var _React$createClass;
+	
+	function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+	
 	var React = __webpack_require__(1);
 	
-	var CharacterSelect = React.createClass({
+	var CharacterSelect = React.createClass((_React$createClass = {
 	  displayName: "CharacterSelect",
 	
 	
@@ -19834,47 +19839,84 @@
 	
 	  handleSelect: function handleSelect(e) {
 	    this.setState({ attribute: e.target.value });
-	  },
-	
-	  // handleOwnerChange: function(e){
-	  //   this.setState({owner: e.target.value})
-	  // },
-	
-	  // handleSubmit: function(e){
-	  //   e.preventDefault()
-	  //   var owner = this.state.owner.trim()
-	  //   console.log(owner)
-	  //   if (!owner){
-	  //     return
-	  //   }
-	  //   this.props.onCommentSubmit(owner)
-	  // },
-	
-	
-	  render: function render() {
-	    return React.createElement(
-	      "select",
-	      { value: "nothing", onChange: this.handleSelect },
-	      React.createElement(
-	        "option",
-	        { value: "glasses", key: "glasses" },
-	        "are they person wearing glasses?"
-	      ),
-	      ",",
-	      React.createElement(
-	        "option",
-	        { value: "beard", key: "beard" },
-	        "have they got themselves a beard or moustache?"
-	      ),
-	      ",",
-	      React.createElement(
-	        "option",
-	        { value: "hat", key: "hat" },
-	        "are they wearing a fetching hat?"
-	      )
-	    );
 	  }
-	});
+	
+	}, _defineProperty(_React$createClass, "handleSelect", function handleSelect(e) {
+	  e.preventDefault();
+	  var attribute = e.target.value;
+	  this.setState({ attribute: attribute });
+	}), _defineProperty(_React$createClass, "handleSubmit", function handleSubmit(e) {
+	  e.preventDefault();
+	  console.log("this.state.attribute = ", this.state.attribute);
+	  // this.props.onAttributeSubmit(this.state.attribute)
+	}), _defineProperty(_React$createClass, "render", function render() {
+	
+	  return React.createElement(
+	    "div",
+	    { "class": "dropdown" },
+	    React.createElement(
+	      "button",
+	      { onclick: "myFunction()", "class": "dropbtn" },
+	      "Dropdown"
+	    ),
+	    React.createElement(
+	      "div",
+	      { id: "myDropdown", "class": "dropdown-content" },
+	      React.createElement(
+	        "a",
+	        { href: "#" },
+	        "Link 1"
+	      ),
+	      React.createElement(
+	        "a",
+	        { href: "#" },
+	        "Link 2"
+	      ),
+	      React.createElement(
+	        "a",
+	        { href: "#" },
+	        "Link 3"
+	      )
+	    )
+	  );
+	  // return(
+	  //   <select value="nothing" onChange={this.handleSelect}  >
+	  //   <option key="nowt">
+	  //   Please select 
+	  //   </option>,
+	  //   <option value="blonde" key="blonde">
+	  //   Is this person a natural blonde?
+	  //   </option>,
+	  //   <option value="brown" key="brown">
+	  //   Is this person a brunette?
+	  //   </option>,
+	  //   <option value="white" key="white">
+	  //   Has this person got white hair       
+	  //   </option>,
+	  //   <option value="bald" key="bald">
+	  //   Is this person a baldy?
+	  //   </option>,
+	  //   <option value="glasses" key="glasses">
+	  //   Is this person wearing spectacles?
+	  //   </option>,
+	  //   <option value="beard" key="beard">
+	  //   Is there facial hair of some description present?
+	  //   </option>,
+	  //   <option value="hat" key="hat">
+	  //   Is this person wearing a hat?
+	  //   </option>,
+	  //   <option value="smile" key="smile">
+	  //   Does this person have a beaming great big smile?
+	  //   </option>,
+	  //   <option value="female" key="female">
+	  //   Is this person a lady of some description?
+	  //   </option>,
+	  //   <option value="male" key="male">
+	  //   Is the person of the male variety?
+	  //   </option>,
+	  //   </select>
+	  //   )
+	}), _React$createClass));
 	
 	module.exports = CharacterSelect;
 
@@ -19898,7 +19940,7 @@
 	  },
 	
 	  selectTheGameCharacter: function selectTheGameCharacter() {
-	    character = _.sample(this.charactersArray);
+	    var character = _.sample(this.charactersArray);
 	    this.addCharacterToChosenCharacterArray(character);
 	  },
 	
@@ -19918,6 +19960,102 @@
 	    }
 	  },
 	
+	  doesCharacterHave: function doesCharacterHave(value) {
+	    switch (value) {
+	
+	      case "blonde":
+	
+	        if (this.chosenCharacter[0].blonde === true) {
+	          return "Yes, they do have blonde hair.";
+	        } else {
+	          return "Nope, they don't have blonde hair.";
+	        }
+	        break;
+	
+	      case "brown":
+	
+	        if (this.chosenCharacter[0].brown === true) {
+	          return "Yes, they do have brown hair.";
+	        } else {
+	          return "Nope, they don't have brown hair actually.";
+	        }
+	        break;
+	
+	      case "white":
+	
+	        if (this.chosenCharacter[0].white === true) {
+	          return "Yup, they got's the white hair.";
+	        } else {
+	          return "White? White hair? No I don't think so.";
+	        }
+	        break;
+	
+	      case "bald":
+	
+	        if (this.chosenCharacter[0].bald === true) {
+	          return "Haa haa! Yeah, the poor sod is a baldy.";
+	        } else {
+	          return "Nope, not that unlucky.";
+	        }
+	        break;
+	
+	      case "glasses":
+	
+	        if (this.chosenCharacter[0].glasses === true) {
+	          return "Yes, they have a very fetching pair of spectacles.";
+	        } else {
+	          return "Nope, they don't wear glasses.";
+	        }
+	        break;
+	
+	      case "beard":
+	
+	        if (this.chosenCharacter[0].beard === true) {
+	          return "Yeah, stupid hipster.";
+	        } else {
+	          return "Nah, they have a face as smooth as a baby's bottom.";
+	        }
+	        break;
+	
+	      case "hat":
+	
+	        if (this.chosenCharacter[0].hat === true) {
+	          return "Yes, they are indeed wearing a hat.";
+	        } else {
+	          return "No hat today.";
+	        }
+	        break;
+	
+	      case "smile":
+	
+	        if (this.chosenCharacter[0].smile === true) {
+	          return "A big bright beautiful smile is plastered all over their face.";
+	        } else {
+	          return "Hmmm, is it a frown, perhaps a grimace. Whatever it is, it's not a smile.";
+	        }
+	        break;
+	
+	      case "female":
+	
+	        if (this.chosenCharacter[0].female === true) {
+	          return "She may not be a lady, but she's all woman.";
+	        } else {
+	          return "That's no lady... that's a man!";
+	        }
+	        break;
+	
+	      case "male":
+	
+	        if (this.chosenCharacter[0].male === true) {
+	          return "A man? yes, technically.";
+	        } else {
+	          return "That aint no man... Definately a woman, born that way or not.";
+	        }
+	        break;
+	
+	    }
+	  }
+	
 	  //  doesCharacterHave: function(attribute){
 	  //   var key = this.chosenCharacter[0]
 	  //   if ( key.attribute === 'yes'){
@@ -19926,102 +20064,6 @@
 	  //    return "no they do not";
 	  //  }
 	  // },
-	
-	  doesCharacterHave: function doesCharacterHave(value) {
-	    switch (value) {
-	
-	      case "blonde":
-	
-	        if (this.chosenCharacter[0].blonde === true) {
-	          return "yes";
-	        } else {
-	          return "no";
-	        }
-	        break;
-	
-	      case "brown":
-	
-	        if (this.chosenCharacter[0].brown === true) {
-	          return "yes";
-	        } else {
-	          return "no";
-	        }
-	        break;
-	
-	      case "white":
-	
-	        if (this.chosenCharacter[0].white === true) {
-	          return "yes";
-	        } else {
-	          return "no";
-	        }
-	        break;
-	
-	      case "bald":
-	
-	        if (this.chosenCharacter[0].bald === true) {
-	          return "yes";
-	        } else {
-	          return "no";
-	        }
-	        break;
-	
-	      case "glasses":
-	
-	        if (this.chosenCharacter[0].glasses === true) {
-	          return "yes";
-	        } else {
-	          return "no";
-	        }
-	        break;
-	
-	      case "beard":
-	
-	        if (this.chosenCharacter[0].beard === true) {
-	          return "yes";
-	        } else {
-	          return "no";
-	        }
-	        break;
-	
-	      case "hat":
-	
-	        if (this.chosenCharacter[0].hat === true) {
-	          return "yes";
-	        } else {
-	          return "no";
-	        }
-	        break;
-	
-	      case "smile":
-	
-	        if (this.chosenCharacter[0].smile === true) {
-	          return "yes";
-	        } else {
-	          return "no";
-	        }
-	        break;
-	
-	      case "female":
-	
-	        if (this.chosenCharacter[0].female === true) {
-	          return "yes";
-	        } else {
-	          return "no";
-	        }
-	        break;
-	
-	      case "male":
-	
-	        if (this.chosenCharacter[0].male === true) {
-	          return "yes";
-	        } else {
-	          return "no";
-	        }
-	        break;
-	
-	    }
-	  }
 	
 	};
 	

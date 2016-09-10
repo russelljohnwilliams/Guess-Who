@@ -38,10 +38,11 @@ var GuessWhoBox = React.createClass({
     return{guessWho: guessWho}
   },
 
-  handleAttributeSubmit: function(){
-    var result = this.state.guessWho.doesCharacterHave(attribute);
-    console.log(result);
-    this.setState({selectedAccount: result})
+  handleAttributeSubmit: function(attribute){
+    this.state.guessWho.selectTheGameCharacter();
+    // var result = this.state.guessWho.doesCharacterHave(attribute);
+    console.log(attribute);
+    // this.setState({selectedAccount: result})
   },
 
   render: function(){
