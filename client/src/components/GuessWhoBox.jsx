@@ -5,8 +5,33 @@ var GuessWho = require('../models/guessWho')
 var GuessWhoBox = React.createClass({
 
   getInitialState: function(){
+
+    var characters = [
+    {name:'Alfred',
+    blonde:true, 
+    brown: false,
+    white: false,
+    bald: false,
+    glasses:false, 
+    beard:true, 
+    hat:false,  
+    smile: false, 
+    female: false,
+    male: true,
+    pic: './src/models/img/alfred.png'},
     
-    var sampleData = [{name:'Alfred', hair:'blonde', glasses:'no', beard:'yes', hat:'no', gender: 'male', smile: 'no', glasses: 'no', pic: './src/models/img/alfred.png'}, {name:'Anita', hair:'blonde', glasses:'no', beard:'no', hat:'no', gender: 'female', smile: 'yes', glasses: 'no', pic: './src/models/img/anita.png'}]
+    {name:'Anita',
+    blonde:true, 
+    brown: false,
+    white: false,
+    bald: false,
+    glasses:false, 
+    beard:false, 
+    hat:false,  
+    smile:true, 
+    female: true,
+    male: false,
+    pic: './src/models/img/anita.png'}]
 
     var guessWho = new GuessWho()
 

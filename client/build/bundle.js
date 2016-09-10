@@ -19754,8 +19754,6 @@
 
 	'use strict';
 	
-	function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-	
 	var React = __webpack_require__(1);
 	var CharacterSelect = __webpack_require__(160);
 	var GuessWho = __webpack_require__(161);
@@ -19765,9 +19763,30 @@
 	
 	
 	  getInitialState: function getInitialState() {
-	    var _ref, _ref2;
 	
-	    var sampleData = [(_ref = { name: 'Alfred', hair: 'blonde', glasses: 'no', beard: 'yes', hat: 'no', gender: 'male', smile: 'no' }, _defineProperty(_ref, 'glasses', 'no'), _defineProperty(_ref, 'pic', './src/models/img/alfred.png'), _ref), (_ref2 = { name: 'Anita', hair: 'blonde', glasses: 'no', beard: 'no', hat: 'no', gender: 'female', smile: 'yes' }, _defineProperty(_ref2, 'glasses', 'no'), _defineProperty(_ref2, 'pic', './src/models/img/anita.png'), _ref2)];
+	    var characters = [{ name: 'Alfred',
+	      blonde: true,
+	      brown: false,
+	      white: false,
+	      bald: false,
+	      glasses: false,
+	      beard: true,
+	      hat: false,
+	      smile: false,
+	      female: false,
+	      male: true,
+	      pic: './src/models/img/alfred.png' }, { name: 'Anita',
+	      blonde: true,
+	      brown: false,
+	      white: false,
+	      bald: false,
+	      glasses: false,
+	      beard: false,
+	      hat: false,
+	      smile: true,
+	      female: true,
+	      male: false,
+	      pic: './src/models/img/anita.png' }];
 	
 	    var guessWho = new GuessWho();
 	
@@ -19897,17 +19916,112 @@
 	    } else {
 	      return "Sorry, you have chosen incorrectly";
 	    }
+	  },
+	
+	  //  doesCharacterHave: function(attribute){
+	  //   var key = this.chosenCharacter[0]
+	  //   if ( key.attribute === 'yes'){
+	  //     return "yes they do";
+	  //   } else if ( key.glasses === 'no'){
+	  //    return "no they do not";
+	  //  }
+	  // },
+	
+	  switchFunction: function switchFunction(value) {
+	    switch (value) {
+	
+	      case "blonde":
+	
+	        if (this.chosenCharacter[0].blonde === true) {
+	          return "yes";
+	        } else {
+	          return "no";
+	        }
+	        break;
+	
+	      case "brown":
+	
+	        if (this.chosenCharacter[0].brown === true) {
+	          return "yes";
+	        } else {
+	          return "no";
+	        }
+	        break;
+	
+	      case "white":
+	
+	        if (this.chosenCharacter[0].white === true) {
+	          return "yes";
+	        } else {
+	          return "no";
+	        }
+	        break;
+	
+	      case "bald":
+	
+	        if (this.chosenCharacter[0].bald === true) {
+	          return "yes";
+	        } else {
+	          return "no";
+	        }
+	        break;
+	
+	      case "glasses":
+	
+	        if (this.chosenCharacter[0].glasses === true) {
+	          return "yes";
+	        } else {
+	          return "no";
+	        }
+	        break;
+	
+	      case "beard":
+	
+	        if (this.chosenCharacter[0].beard === true) {
+	          return "yes";
+	        } else {
+	          return "no";
+	        }
+	        break;
+	
+	      case "hat":
+	
+	        if (this.chosenCharacter[0].hat === true) {
+	          return "yes";
+	        } else {
+	          return "no";
+	        }
+	        break;
+	
+	      case "smile":
+	
+	        if (this.chosenCharacter[0].smile === true) {
+	          return "yes";
+	        } else {
+	          return "no";
+	        }
+	        break;
+	
+	      case "female":
+	
+	        if (this.chosenCharacter[0].female === true) {
+	          return "yes";
+	        } else {
+	          return "no";
+	        }
+	        break;
+	
+	      case "male":
+	
+	        if (this.chosenCharacter[0].male === true) {
+	          return "yes";
+	        } else {
+	          return "no";
+	        }
+	        break;
+	
+	    }
 	  }
-	
-	  // doesCharacterHaveAHat: function(){
-	  //  if ( === "hat"){
-	  //    return "Yes, the character does indeed have a hat"
-	  //  }
-	  //  else{
-	  //    return "No, I'm sad to say the character does not have a hat"
-	  //  }
-	  // }
-	
 	
 	};
 	

@@ -10,11 +10,34 @@ describe('guessWho', function(){
 
   beforeEach(function(){
     guessWho = new GuessWho();
-    alfred = new Character({name:'Alfred', hair:'blonde', glasses:'no', beard:'yes', hat:'no', gender: 'male', smile: 'no', glasses: 'no', pic: './src/models/img/alfred.png'});
-    anita = new Character({name:'Anita', hair:'blonde', glasses:'no', beard:'no', hat:'no', gender: 'female', smile: 'yes', glasses: 'no', pic: './src/models/img/anita.png'});
+    alfred = new Character({name:'Alfred',
+    blonde:true, 
+    brown: false,
+    white: false,
+    bald: false,
+    glasses:false, 
+    beard:true, 
+    hat:false,  
+    smile: false, 
+    female: false,
+    male: true,
+    pic: './src/models/img/alfred.png'});
+    
+    anita = new Character({name:'Anita',
+    blonde:true, 
+    brown: false,
+    white: false,
+    bald: false,
+    glasses:false, 
+    beard:false, 
+    hat:false,  
+    smile:true, 
+    female: true,
+    male: false,
+    pic: './src/models/img/anita.png'});
+
     guessWho.addCharacter(alfred);
     guessWho.addCharacter(anita);  
-
   });
 
 
@@ -44,6 +67,29 @@ it("can give no answer if we have chosen the character correctly", function(){
   guessWho.addCharacterToChosenCharacterArray(anita);
   assert.equal("Sorry, you have chosen incorrectly", guessWho.isTheCharacter("Alfred"));
 })
+
+
+it ("can ask about an attribute they do not have", function(){
+  guessWho.addCharacterToChosenCharacterArray(anita);
+  assert.equal("no", guessWho.switchFunction("brown"));
+})
+
+
+it ("can ask about another attribute they do not have", function(){
+  guessWho.addCharacterToChosenCharacterArray(alfred);
+  assert.equal("no", guessWho.switchFunction("bald"));
+})
+
+it ("can ask about an attribute they do have", function(){
+  guessWho.addCharacterToChosenCharacterArray(anita);
+  assert.equal("yes", guessWho.switchFunction("smile"));
+})
+
+it ("can ask about an attribute they do have", function(){
+  guessWho.addCharacterToChosenCharacterArray(alfred);
+  assert.equal("yes", guessWho.switchFunction("beard"));
+})
+
 
 })
 
