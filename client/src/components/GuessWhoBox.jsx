@@ -35,13 +35,16 @@ var GuessWhoBox = React.createClass({
 
     var guessWho = new GuessWho()
 
-    return{guessWho: guessWho}
+    guessWho.addCharacter(characters[0])
+    guessWho.addCharacter(characters[1])
+
+    return{guessWho: guessWho, characters:characters}
   },
 
   setGameCharacter: function(){
-    var characters = this.state.guessWho.characters
-    console.log(characters)
-    // this.state.guessWho.selectTheGameCharacter(characters)
+    var characters = this.state.guessWho.charactersArray
+    console.log("the character be =", characters)
+    this.state.guessWho.selectTheGameCharacter(characters)
     console.log("character is", this.state.guessWho.chosenCharacter[0])
   },
 

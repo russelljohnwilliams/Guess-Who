@@ -18,7 +18,7 @@ GuessWho.prototype = {
   },
 
   addCharacterToChosenCharacterArray: function(character){
-    this.chosenCharacter.push(character);
+    this.chosenCharacter.unshift(character);
   },
 
   getChosenCharacter: function(){
@@ -44,11 +44,11 @@ console.log(value)
       case "blonde":
 
       if(this.chosenCharacter[0].blonde === true) {
-        return "Yes, they do have blonde hair.";
-        console.log("Yes, they do have blonde hair.")
+        // return "Yes, they do have blonde hair.";
+        console.log("Yes, they do have blonde hair.");
       } else {
-        return "Nope, they don't have blonde hair.";
-        console.log("Nope, they don't have blonde hair.")
+        // return "Nope, they don't have blonde hair.";
+        console.log("Nope, they don't have blonde hair.");
       }
       break;
 
@@ -57,7 +57,8 @@ console.log(value)
       if(this.chosenCharacter[0].brown === true) {
         return "Yes, they do have brown hair.";
       } else {
-        return "Nope, they don't have brown hair actually.";
+        // return "Nope, they don't have brown hair actually.";
+        console.log("Nope, they don't have brown hair actually.")
       }
       break;
 

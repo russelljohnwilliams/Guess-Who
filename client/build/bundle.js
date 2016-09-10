@@ -19790,13 +19790,16 @@
 	
 	    var guessWho = new GuessWho();
 	
-	    return { guessWho: guessWho };
+	    guessWho.addCharacter(characters[0]);
+	    guessWho.addCharacter(characters[1]);
+	
+	    return { guessWho: guessWho, characters: characters };
 	  },
 	
 	  setGameCharacter: function setGameCharacter() {
-	    var characters = this.state.guessWho.characters;
-	    console.log(characters);
-	    // this.state.guessWho.selectTheGameCharacter(characters)
+	    var characters = this.state.guessWho.charactersArray;
+	    console.log("the character be =", characters);
+	    this.state.guessWho.selectTheGameCharacter(characters);
 	    console.log("character is", this.state.guessWho.chosenCharacter[0]);
 	  },
 	
@@ -19955,7 +19958,7 @@
 	  },
 	
 	  addCharacterToChosenCharacterArray: function addCharacterToChosenCharacterArray(character) {
-	    this.chosenCharacter.push(character);
+	    this.chosenCharacter.unshift(character);
 	  },
 	
 	  getChosenCharacter: function getChosenCharacter() {
@@ -19981,10 +19984,10 @@
 	      case "blonde":
 	
 	        if (this.chosenCharacter[0].blonde === true) {
-	          return "Yes, they do have blonde hair.";
+	          // return "Yes, they do have blonde hair.";
 	          console.log("Yes, they do have blonde hair.");
 	        } else {
-	          return "Nope, they don't have blonde hair.";
+	          // return "Nope, they don't have blonde hair.";
 	          console.log("Nope, they don't have blonde hair.");
 	        }
 	        break;
@@ -19994,7 +19997,8 @@
 	        if (this.chosenCharacter[0].brown === true) {
 	          return "Yes, they do have brown hair.";
 	        } else {
-	          return "Nope, they don't have brown hair actually.";
+	          // return "Nope, they don't have brown hair actually.";
+	          console.log("Nope, they don't have brown hair actually.");
 	        }
 	        break;
 	
