@@ -9,7 +9,7 @@ console.log("comment?????", props.comment)
         )
     }
     return(
-      <div>
+      <div className="commentBox">
       <p>{props.comment}</p>  
       </div>
       )
