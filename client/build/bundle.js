@@ -19754,6 +19754,8 @@
 
 	'use strict';
 	
+	function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+	
 	var React = __webpack_require__(1);
 	var CharacterSelect = __webpack_require__(160);
 	var CharacterGuess = __webpack_require__(161);
@@ -19769,39 +19771,38 @@
 	
 	    var guessWho = new GuessWho();
 	
-	    // guessWho.addCharacter(sampleData[0])
-	    // guessWho.addCharacter(sampleData[1])
-	    // guessWho.addCharacter(sampleData[2])
-	    // guessWho.addCharacter(sampleData[3])
-	    // guessWho.addCharacter(sampleData[4])
-	    // guessWho.addCharacter(sampleData[5])
-	    // guessWho.addCharacter(sampleData[6])
-	    // guessWho.addCharacter(sampleData[7])
-	    // guessWho.addCharacter(sampleData[8])
-	    // guessWho.addCharacter(sampleData[9])
-	    // guessWho.addCharacter(sampleData[10])
-	    // guessWho.addCharacter(sampleData[11])
-	    // guessWho.addCharacter(sampleData[12])
-	    // guessWho.addCharacter(sampleData[13])
-	    // guessWho.addCharacter(sampleData[14])
-	    // guessWho.addCharacter(sampleData[15])
+	    guessWho.addCharacter(sampleData[0]);
+	    guessWho.addCharacter(sampleData[1]);
+	    guessWho.addCharacter(sampleData[2]);
+	    guessWho.addCharacter(sampleData[3]);
+	    guessWho.addCharacter(sampleData[4]);
+	    guessWho.addCharacter(sampleData[5]);
+	    guessWho.addCharacter(sampleData[6]);
+	    guessWho.addCharacter(sampleData[7]);
+	    guessWho.addCharacter(sampleData[8]);
+	    guessWho.addCharacter(sampleData[9]);
+	    guessWho.addCharacter(sampleData[10]);
+	    guessWho.addCharacter(sampleData[11]);
+	    guessWho.addCharacter(sampleData[12]);
+	    guessWho.addCharacter(sampleData[13]);
+	    guessWho.addCharacter(sampleData[14]);
+	    guessWho.addCharacter(sampleData[15]);
 	
 	    return { guessWho: guessWho, characters: sampleData, comment: null };
 	  },
 	
+	  // startGame: function(){
+	  //   console.log("startGame", sampleData)
+	  //   var characters = sampleData.map(function(character){
+	  //   this.guessWho.addCharacter(character)
+	  //   }.bind(this))
+	  //   this.setGameCharacter()
+	  // },
+	
 	  setGameCharacter: function setGameCharacter() {
 	    var characters = this.state.guessWho.charactersArray;
-	    console.log("weehey", characters);
+	    // console.log("setGameCharater", characters)
 	    this.state.guessWho.selectTheGameCharacter(characters);
-	  },
-	
-	  startGame: function startGame() {
-	    var i = 0;
-	    for (i = 0; i < 3; i++) {
-	      // console.log(sampleData[i].name)
-	      this.guessWho.addCharacter(sampleData[i]);
-	    }
-	    this.setGameCharacter();
 	  },
 	
 	  setCurrentCountry: function setCurrentCountry(country) {
@@ -19810,7 +19811,7 @@
 	
 	  handleAttributeSubmit: function handleAttributeSubmit(attribute) {
 	    var comment = this.state.guessWho.doesCharacterHave(attribute);
-	    console.log("comment =", comment);
+	    // console.log("handleAttributeSubmit =", comment)
 	    this.setState({ comment: comment });
 	  },
 	
@@ -19819,7 +19820,20 @@
 	    this.setState({ comment: comment });
 	  },
 	
+	  changeOpacity: function changeOpacity() {
+	    var i = 0;
+	    for (i = 0; i < 10; i++) {
+	      console.log(i);
+	      var div1 = document.getElementById(i);
+	      if (div1.style.opacity == '0.3') {
+	        div1.style.opacity = '1';
+	      }
+	    }
+	  },
+	
 	  render: function render() {
+	    var _React$createElement;
+	
 	    return React.createElement(
 	      'div',
 	      { className: 'gameBox' },
@@ -19834,7 +19848,7 @@
 	        ),
 	        React.createElement(
 	          'button',
-	          { onClick: this.startGame, className: 'button' },
+	          (_React$createElement = { onClick: this.setGameCharacter }, _defineProperty(_React$createElement, 'onClick', this.changeOpacity), _defineProperty(_React$createElement, 'className', 'button'), _React$createElement),
 	          ' start new game '
 	        )
 	      ),
@@ -20220,7 +20234,7 @@
 	  displayName: 'CharacterPictures',
 	
 	
-	  bigX: function bigX(e) {
+	  changeOpacity: function changeOpacity(e) {
 	    var newIndex = e.target.id;
 	
 	    var div1 = document.getElementById(newIndex);
@@ -20237,7 +20251,7 @@
 	      return React.createElement(
 	        'div',
 	        { className: 'characterPic' },
-	        React.createElement('img', { src: character.image, onClick: this.bigX, id: index })
+	        React.createElement('img', { src: character.image, onClick: this.changeOpacity, id: index, className: 'pictures' })
 	      );
 	    }.bind(this));
 	    return React.createElement(

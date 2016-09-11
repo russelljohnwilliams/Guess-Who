@@ -2,7 +2,7 @@ var React = require('react')
 
 var CharacterPictures = React.createClass({
 
-  bigX: function(e){
+  changeOpacity: function(e){
     var newIndex = e.target.id
    
           var div1 = document.getElementById(newIndex)
@@ -21,7 +21,7 @@ var CharacterPictures = React.createClass({
     var characters = this.props.characters.map(function(character, index){
       return(
         <div className="characterPic" >
-        <img src = {character.image} onClick={this.bigX} id={index}/>
+        <img src = {character.image} onClick={this.changeOpacity} id={index} className="pictures"/>
         </div>
         
         )

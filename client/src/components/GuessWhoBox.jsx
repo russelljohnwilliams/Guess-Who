@@ -13,74 +13,83 @@ var GuessWhoBox = React.createClass({
 
     var guessWho = new GuessWho()
 
-    // guessWho.addCharacter(sampleData[0])
-    // guessWho.addCharacter(sampleData[1])
-    // guessWho.addCharacter(sampleData[2])
-    // guessWho.addCharacter(sampleData[3])
-    // guessWho.addCharacter(sampleData[4])
-    // guessWho.addCharacter(sampleData[5])
-    // guessWho.addCharacter(sampleData[6])
-    // guessWho.addCharacter(sampleData[7])
-    // guessWho.addCharacter(sampleData[8])
-    // guessWho.addCharacter(sampleData[9])
-    // guessWho.addCharacter(sampleData[10])
-    // guessWho.addCharacter(sampleData[11])
-    // guessWho.addCharacter(sampleData[12])
-    // guessWho.addCharacter(sampleData[13])
-    // guessWho.addCharacter(sampleData[14])
-    // guessWho.addCharacter(sampleData[15])
+    guessWho.addCharacter(sampleData[0])
+    guessWho.addCharacter(sampleData[1])
+    guessWho.addCharacter(sampleData[2])
+    guessWho.addCharacter(sampleData[3])
+    guessWho.addCharacter(sampleData[4])
+    guessWho.addCharacter(sampleData[5])
+    guessWho.addCharacter(sampleData[6])
+    guessWho.addCharacter(sampleData[7])
+    guessWho.addCharacter(sampleData[8])
+    guessWho.addCharacter(sampleData[9])
+    guessWho.addCharacter(sampleData[10])
+    guessWho.addCharacter(sampleData[11])
+    guessWho.addCharacter(sampleData[12])
+    guessWho.addCharacter(sampleData[13])
+    guessWho.addCharacter(sampleData[14])
+    guessWho.addCharacter(sampleData[15])
 
     return{guessWho: guessWho, characters:sampleData, comment:null}
   },
 
+// startGame: function(){
+//   console.log("startGame", sampleData)
+//   var characters = sampleData.map(function(character){
+//   this.guessWho.addCharacter(character)
+//   }.bind(this))
+//   this.setGameCharacter()
+// },
 
-  setGameCharacter: function(){
-    var characters = this.state.guessWho.charactersArray
-    console.log("weehey", characters)
-    this.state.guessWho.selectTheGameCharacter(characters)
-  },
+setGameCharacter: function(){
+  var characters = this.state.guessWho.charactersArray
+// console.log("setGameCharater", characters)
+this.state.guessWho.selectTheGameCharacter(characters)
+},
 
-  startGame: function(){
-    var i = 0
-    for (i = 0; i < 3; i++){
-      // console.log(sampleData[i].name)
-    this.guessWho.addCharacter(sampleData[i])
-    }
-    this.setGameCharacter()
-  },
+setCurrentCountry: function(country){
+  this.setState({currentCountry: character})
+},
 
-  setCurrentCountry: function(country){
-    this.setState({currentCountry: character})
-  },
+handleAttributeSubmit: function(attribute){
+  var comment = this.state.guessWho.doesCharacterHave(attribute)
+// console.log("handleAttributeSubmit =", comment)
+this.setState({comment: comment})
+},
 
-  handleAttributeSubmit: function(attribute){
-    var comment = this.state.guessWho.doesCharacterHave(attribute)
-    console.log("comment =", comment)
-    this.setState({comment: comment})
-  },
+handleGuessSubmit: function(attribute){
+  var comment = this.state.guessWho.isTheCharacter(attribute)
+  this.setState({comment: comment})
+},
 
-  handleGuessSubmit: function(attribute){
-    var comment = this.state.guessWho.isTheCharacter(attribute)
-    this.setState({comment: comment})
-  },
-
-  render: function(){
-    return(
-      <div className="gameBox">
-      <header>
-      <img src="img/guessWho.png" className="logo"/>
-      <h3>GUESS WHO!</h3>
-      <button onClick={this.startGame} className="button"> start new game </button> 
-      </header> 
-      <p>let's narrow it down a bit.</p>
-      <CharacterSelect onAttributeSubmit={this.handleAttributeSubmit}/>
-      <GuessResponse comment={this.state.comment}/>
-      <CharacterGuess characters={this.state.characters} onGuessSubmit={this.handleGuessSubmit}/>    
-      <CharacterPictures characters={this.state.characters}/>
-
-      </div>
-      )
+changeOpacity: function(){ 
+  var i = 0
+  for (i = 0; i < 10; i++){
+    console.log(i)
+    var div1 = document.getElementById(i)
+    if (div1.style.opacity == '0.3') {
+      div1.style.opacity = '1'
+    } 
   }
+},
+
+render: function(){
+  return(
+    <div className="gameBox">
+    <header>
+    <img src="img/guessWho.png" className="logo"/>
+    <h3>GUESS WHO!</h3>
+    <button onClick={this.setGameCharacter} onClick={this.changeOpacity} className="button"> start new game </button> 
+    </header> 
+    <p>let's narrow it down a bit.</p>
+    <CharacterSelect onAttributeSubmit={this.handleAttributeSubmit}/>
+    <GuessResponse comment={this.state.comment}/>
+    <CharacterGuess characters={this.state.characters} onGuessSubmit={this.handleGuessSubmit}/>    
+    <CharacterPictures characters={this.state.characters}/>
+
+    </div>
+    )
+}
 
 })
 
