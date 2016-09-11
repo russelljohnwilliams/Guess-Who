@@ -6,14 +6,16 @@ var CharacterSelect = React.createClass({
    handleSelect: function(e){
     e.preventDefault()
     var attribute = e.target.value
+    console.log("what is the attribute? ", attribute)
+
     this.props.onAttributeSubmit(attribute)
-    console.log("this one here", this.props)
+   
   },
 
   render: function(){
    
     return(
-      <select value="nothing" onChange={this.handleSelect}  >
+      <select className="dropDown" value="nothing" onChange={this.handleSelect}  >
       <option key="nowt">
       Please select 
       </option>,

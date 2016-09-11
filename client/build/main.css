@@ -1,57 +1,82 @@
 body{
   font-family: Verdana;
-}
-
-.counter-box, .comment-box{
-  border: 2px solid mediumaquamarine;
-  border-radius: 5px;
-  padding: 10px;
-  margin: 5px auto;
-  width: 400px;
-  font-size: 20px;
-  text-align: center;
+  background: #30A9DE;
 }
 
 button{
+  float: right;
   padding: 10px;
+  padding-bottom: 20px;
   width: 150px;
-  border-radius: 10px;
+  border: 5px solid #feee7d;
+  box-shadow:inset 0px 0px 0px 5px #E53A40 ;
+
+  border-radius: 25px;
   font-size: 20px;
-  background-color: tomato;
+  background-color: white;
 }
 
 button:hover{
-  background-color: mediumaquamarine;
+  background-color: #E53A40;
 }
 
-.comment{
-  border-bottom: 1px solid mediumaquamarine;
-  padding: 10px;
+img{
+  border-radius: 15px;
+  /*outline:5px solid #E53A40;*/
+  box-shadow:inset 0px -3px 0px 10px #E53A40 ;
+  padding:5px;
+  border: 5px solid #feee7d;
+  margin: 10px;
+  border-radius: 25px;
 }
 
-.comment-form{
-  margin: 0 auto;
-  width: 70%;
+select{
+  height: 55px;
+  width: 340px;
+  padding:10px;
+  border: 4px solid #feee7d;
+  box-shadow:inset 0px 0px 0px 5px #E53A40 ;
+  margin: 10px;
+  border-radius: 25px;
 }
 
-.comment-form input{
-  display: block;
-  margin: 20px 0;
-  padding: 10px;
-  width: 100%;
-}
-
-.comment-form input[type=submit]{
-  width: 100%;
-  padding: 10px;
-  margin 20px auto;
-  text-align: center;
-  color: white;
-  font-size: 20px;
-  background-color: mediumaquamarine;
-  border-radius: 5px;
-}
-
-.countries-box{
+option{
+  background: blue;
   
 }
+
+.characterPic{
+
+  float: left;
+  width: 105px;
+  margin: 25px;
+
+}
+
+header{
+  height: 110px;
+}
+
+.logo{
+  float: left;
+  height: 100px;
+}
+
+
+.gameBox{
+
+  text-align: center;
+}
+
+
+h3{
+  float: left;
+  text-align: center;
+  margin:0;
+
+  width: 150px;
+}
+
+
+
+

@@ -1,6 +1,7 @@
 var React = require('react')
 var CharacterSelect = require('./CharacterSelect')
 var CharacterGuess = require('./CharacterGuess')
+var GuessResponse = require('./GuessResponse')
 var CharacterPictures = require('./CharacterPictures')
 var GuessWho = require('../models/guessWho')
 
@@ -40,7 +41,7 @@ var GuessWhoBox = React.createClass({
     guessWho.addCharacter(sampleData[0])
     guessWho.addCharacter(sampleData[1])
 
-    return{guessWho: guessWho, characters:sampleData}
+    return{guessWho: guessWho, characters:sampleData, comment:null}
   },
 
   setGameCharacter: function(){
@@ -48,30 +49,39 @@ var GuessWhoBox = React.createClass({
     this.state.guessWho.selectTheGameCharacter(characters)
   },
 
-  handleAttributeSubmit: function(attribute){
+  setCurrentCountry: function(country){
+    this.setState({currentCountry: character})
+  },
 
-    // var result = this.state.guessWho.doesCharacterHave(attribute);
-    this.state.guessWho.doesCharacterHave(attribute)
-    // this.setState({selectedAccount: result})
+  handleAttributeSubmit: function(attribute){
+    var comment = this.state.guessWho.doesCharacterHave(attribute)
+    console.log("comment =", comment)
+    this.setState({comment: comment})
   },
 
   handleGuessSubmit: function(attribute){
-    console.log("attribute is :", attribute)
     this.state.guessWho.isTheCharacter(attribute)
+
   },
 
   render: function(){
     return(
-      <div>
-      <img src="img/guessWho.png"/>
-      <h3>Guess Who!</h3>
-  
-
-
-      <CharacterPictures characters={this.state.characters}/>
+      <div className="gameBox">
+      <header>
+      <img src="img/guessWho.png" className="logo"/>
+      <h3>GUESS WHO!</h3>
       <button onClick={this.setGameCharacter} className="button"> start new game </button> 
+      </header> 
+      <br/>
+      <p>let's narrow it down a bit</p><br/>
       <CharacterSelect onAttributeSubmit={this.handleAttributeSubmit}/>
+      <p>take a guess</p><br/>
       <CharacterGuess characters={this.state.characters} onGuessSubmit={this.handleGuessSubmit}/>
+      <br/>
+      <GuessResponse comment={this.state.comment}/>
+      <div>
+      <CharacterPictures characters={this.state.characters}/>
+</div>
       </div>
       )
   }
