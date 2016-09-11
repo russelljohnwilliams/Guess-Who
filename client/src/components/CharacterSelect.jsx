@@ -2,15 +2,12 @@ var React = require('react')
 
 var CharacterSelect = React.createClass({
 
-  getInitialState: function(){
-    return {attribute: null}
-  },
 
-  handleSelect: function(e){
+   handleSelect: function(e){
     e.preventDefault()
     var attribute = e.target.value
-    this.setState({attribute: attribute})
     this.props.onAttributeSubmit(attribute)
+    console.log("this one here", this.props)
   },
 
   render: function(){

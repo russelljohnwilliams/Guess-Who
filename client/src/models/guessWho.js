@@ -26,9 +26,12 @@ GuessWho.prototype = {
   },
 
   isTheCharacter: function(attribute){
+    attribute = _.toString(attribute);
     if (attribute === this.chosenCharacter[0].name ){
+      console.log("yes, the character is called" + attribute);
       return "yes, the character is called " + attribute;
     } else {
+      console.log("Sorry, you have chosen incorrectly");
       return "Sorry, you have chosen incorrectly";
     }
   },

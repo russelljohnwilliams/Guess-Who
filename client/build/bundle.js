@@ -19756,7 +19756,33 @@
 	
 	var React = __webpack_require__(1);
 	var CharacterSelect = __webpack_require__(160);
-	var GuessWho = __webpack_require__(161);
+	var CharacterGuess = __webpack_require__(161);
+	var CharacterPictures = __webpack_require__(162);
+	var GuessWho = __webpack_require__(163);
+	
+	var sampleData = [{ name: 'Alfred',
+	  blonde: true,
+	  brown: false,
+	  white: false,
+	  bald: false,
+	  glasses: false,
+	  beard: true,
+	  hat: false,
+	  smile: false,
+	  female: false,
+	  male: true,
+	  image: './img/alfred.png' }, { name: 'Anita',
+	  blonde: true,
+	  brown: false,
+	  white: false,
+	  bald: false,
+	  glasses: false,
+	  beard: false,
+	  hat: false,
+	  smile: true,
+	  female: true,
+	  male: false,
+	  image: './img/anita.png' }];
 	
 	var GuessWhoBox = React.createClass({
 	  displayName: 'GuessWhoBox',
@@ -19764,68 +19790,49 @@
 	
 	  getInitialState: function getInitialState() {
 	
-	    var characters = [{ name: 'Alfred',
-	      blonde: true,
-	      brown: false,
-	      white: false,
-	      bald: false,
-	      glasses: false,
-	      beard: true,
-	      hat: false,
-	      smile: false,
-	      female: false,
-	      male: true,
-	      pic: './src/models/img/alfred.png' }, { name: 'Anita',
-	      blonde: true,
-	      brown: false,
-	      white: false,
-	      bald: false,
-	      glasses: false,
-	      beard: false,
-	      hat: false,
-	      smile: true,
-	      female: true,
-	      male: false,
-	      pic: './src/models/img/anita.png' }];
-	
 	    var guessWho = new GuessWho();
 	
-	    guessWho.addCharacter(characters[0]);
-	    guessWho.addCharacter(characters[1]);
+	    guessWho.addCharacter(sampleData[0]);
+	    guessWho.addCharacter(sampleData[1]);
 	
-	    return { guessWho: guessWho, characters: characters };
+	    return { guessWho: guessWho, characters: sampleData };
 	  },
 	
 	  setGameCharacter: function setGameCharacter() {
 	    var characters = this.state.guessWho.charactersArray;
-	    console.log("the character be =", characters);
 	    this.state.guessWho.selectTheGameCharacter(characters);
-	    console.log("character is", this.state.guessWho.chosenCharacter[0]);
 	  },
 	
 	  handleAttributeSubmit: function handleAttributeSubmit(attribute) {
 	
 	    // var result = this.state.guessWho.doesCharacterHave(attribute);
-	    console.log("Handle this here attribute", attribute);
 	    this.state.guessWho.doesCharacterHave(attribute);
 	    // this.setState({selectedAccount: result})
+	  },
+	
+	  handleGuessSubmit: function handleGuessSubmit(attribute) {
+	    console.log("attribute is :", attribute);
+	    this.state.guessWho.isTheCharacter(attribute);
 	  },
 	
 	  render: function render() {
 	    return React.createElement(
 	      'div',
 	      null,
+	      React.createElement('img', { src: 'img/guessWho.png' }),
 	      React.createElement(
 	        'h3',
 	        null,
 	        'Guess Who!'
 	      ),
+	      React.createElement(CharacterPictures, { characters: this.state.characters }),
 	      React.createElement(
 	        'button',
 	        { onClick: this.setGameCharacter, className: 'button' },
 	        ' start new game '
 	      ),
-	      React.createElement(CharacterSelect, { onAttributeSubmit: this.handleAttributeSubmit })
+	      React.createElement(CharacterSelect, { onAttributeSubmit: this.handleAttributeSubmit }),
+	      React.createElement(CharacterGuess, { characters: this.state.characters, onGuessSubmit: this.handleGuessSubmit })
 	    );
 	  }
 	
@@ -19845,15 +19852,11 @@
 	  displayName: "CharacterSelect",
 	
 	
-	  getInitialState: function getInitialState() {
-	    return { attribute: null };
-	  },
-	
 	  handleSelect: function handleSelect(e) {
 	    e.preventDefault();
 	    var attribute = e.target.value;
-	    this.setState({ attribute: attribute });
 	    this.props.onAttributeSubmit(attribute);
+	    console.log("this one here", this.props);
 	  },
 	
 	  render: function render() {
@@ -19937,9 +19940,117 @@
 /* 161 */
 /***/ function(module, exports, __webpack_require__) {
 
+	'use strict';
+	
+	var React = __webpack_require__(1);
+	
+	var CharacterGuess = React.createClass({
+	  displayName: 'CharacterGuess',
+	
+	
+	  getInitialState: function getInitialState() {
+	    return { character: null };
+	  },
+	
+	  handleChange: function handleChange(e) {
+	    var name = e.target.value;
+	    this.setState({ character: name });
+	    this.props.onGuessSubmit(name);
+	  },
+	
+	  handleSelect: function handleSelect(e) {
+	    e.preventDefault();
+	    var attribute = e.target.value;
+	    this.props.onGuessSubmit(attribute);
+	  },
+	
+	  render: function render() {
+	    var characters = this.props.characters.map(function (character) {
+	      return React.createElement(
+	        'option',
+	        { value: character.name, key: character.name },
+	        'I think it might be ',
+	        character.name
+	      );
+	    }.bind(this));
+	    return React.createElement(
+	      'select',
+	      { value: this.state.character, onChange: this.handleSelect },
+	      characters
+	    );
+	  }
+	});
+	
+	module.exports = CharacterGuess;
+	
+	// var React = require('react')
+	
+	// var CharacterGuess = React.createClass({
+	
+	//    handleSelect: function(e){
+	//     e.preventDefault()
+	//     var attribute = e.target.value
+	//     this.props.onGuessSubmit(attribute)
+	//   },
+	
+	//   render: function(){
+	
+	//     return(
+	//       <select value="nothing" onChange={this.handleSelect}  >
+	//       <option key="nowt">
+	//       Select a name to take a guess 
+	//       </option>,
+	//       <option value="Alfred" key="Alfred">
+	//       Alfred
+	//       </option>,
+	//       <option value="Anita" key="Anita">
+	//       Anita
+	//       </option>,
+	//       </select>
+	//       )
+	//   }
+	// })
+	
+	
+	// module.exports = CharacterGuess
+
+/***/ },
+/* 162 */
+/***/ function(module, exports, __webpack_require__) {
+
 	"use strict";
 	
-	var _ = __webpack_require__(162);
+	var React = __webpack_require__(1);
+	
+	var CharacterPictures = React.createClass({
+	  displayName: "CharacterPictures",
+	
+	  render: function render() {
+	
+	    var characters = this.props.characters.map(function (character) {
+	      return React.createElement(
+	        "div",
+	        { className: "characterPic" },
+	        React.createElement("img", { src: character.image })
+	      );
+	    }.bind(this));
+	    return React.createElement(
+	      "div",
+	      null,
+	      characters
+	    );
+	  }
+	});
+	
+	module.exports = CharacterPictures;
+
+/***/ },
+/* 163 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+	
+	var _ = __webpack_require__(164);
 	
 	var GuessWho = function GuessWho() {
 	  this.charactersArray = [];
@@ -19966,9 +20077,12 @@
 	  },
 	
 	  isTheCharacter: function isTheCharacter(attribute) {
+	    attribute = _.toString(attribute);
 	    if (attribute === this.chosenCharacter[0].name) {
+	      console.log("yes, the character is called" + attribute);
 	      return "yes, the character is called " + attribute;
 	    } else {
+	      console.log("Sorry, you have chosen incorrectly");
 	      return "Sorry, you have chosen incorrectly";
 	    }
 	  },
@@ -20091,7 +20205,7 @@
 	module.exports = GuessWho;
 
 /***/ },
-/* 162 */
+/* 164 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __WEBPACK_AMD_DEFINE_RESULT__;/* WEBPACK VAR INJECTION */(function(global, module) {/**
@@ -36828,10 +36942,10 @@
 	  }
 	}.call(this));
 	
-	/* WEBPACK VAR INJECTION */}.call(exports, (function() { return this; }()), __webpack_require__(163)(module)))
+	/* WEBPACK VAR INJECTION */}.call(exports, (function() { return this; }()), __webpack_require__(165)(module)))
 
 /***/ },
-/* 163 */
+/* 165 */
 /***/ function(module, exports) {
 
 	module.exports = function(module) {
