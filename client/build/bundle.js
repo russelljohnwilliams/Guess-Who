@@ -19761,6 +19761,97 @@
 	var CharacterPictures = __webpack_require__(163);
 	var GuessWho = __webpack_require__(164);
 	
+	var GuessWhoBox = React.createClass({
+	  displayName: 'GuessWhoBox',
+	
+	
+	  getInitialState: function getInitialState() {
+	
+	    var guessWho = new GuessWho();
+	
+	    // guessWho.addCharacter(sampleData[0])
+	    // guessWho.addCharacter(sampleData[1])
+	    // guessWho.addCharacter(sampleData[2])
+	    // guessWho.addCharacter(sampleData[3])
+	    // guessWho.addCharacter(sampleData[4])
+	    // guessWho.addCharacter(sampleData[5])
+	    // guessWho.addCharacter(sampleData[6])
+	    // guessWho.addCharacter(sampleData[7])
+	    // guessWho.addCharacter(sampleData[8])
+	    // guessWho.addCharacter(sampleData[9])
+	    // guessWho.addCharacter(sampleData[10])
+	    // guessWho.addCharacter(sampleData[11])
+	    // guessWho.addCharacter(sampleData[12])
+	    // guessWho.addCharacter(sampleData[13])
+	    // guessWho.addCharacter(sampleData[14])
+	    // guessWho.addCharacter(sampleData[15])
+	
+	    return { guessWho: guessWho, characters: sampleData, comment: null };
+	  },
+	
+	  setGameCharacter: function setGameCharacter() {
+	    var characters = this.state.guessWho.charactersArray;
+	    console.log("weehey", characters);
+	    this.state.guessWho.selectTheGameCharacter(characters);
+	  },
+	
+	  startGame: function startGame() {
+	    var i = 0;
+	    for (i = 0; i < 3; i++) {
+	      // console.log(sampleData[i].name)
+	      this.guessWho.addCharacter(sampleData[i]);
+	    }
+	    this.setGameCharacter();
+	  },
+	
+	  setCurrentCountry: function setCurrentCountry(country) {
+	    this.setState({ currentCountry: character });
+	  },
+	
+	  handleAttributeSubmit: function handleAttributeSubmit(attribute) {
+	    var comment = this.state.guessWho.doesCharacterHave(attribute);
+	    console.log("comment =", comment);
+	    this.setState({ comment: comment });
+	  },
+	
+	  handleGuessSubmit: function handleGuessSubmit(attribute) {
+	    var comment = this.state.guessWho.isTheCharacter(attribute);
+	    this.setState({ comment: comment });
+	  },
+	
+	  render: function render() {
+	    return React.createElement(
+	      'div',
+	      { className: 'gameBox' },
+	      React.createElement(
+	        'header',
+	        null,
+	        React.createElement('img', { src: 'img/guessWho.png', className: 'logo' }),
+	        React.createElement(
+	          'h3',
+	          null,
+	          'GUESS WHO!'
+	        ),
+	        React.createElement(
+	          'button',
+	          { onClick: this.startGame, className: 'button' },
+	          ' start new game '
+	        )
+	      ),
+	      React.createElement(
+	        'p',
+	        null,
+	        'let\'s narrow it down a bit.'
+	      ),
+	      React.createElement(CharacterSelect, { onAttributeSubmit: this.handleAttributeSubmit }),
+	      React.createElement(GuessResponse, { comment: this.state.comment }),
+	      React.createElement(CharacterGuess, { characters: this.state.characters, onGuessSubmit: this.handleGuessSubmit }),
+	      React.createElement(CharacterPictures, { characters: this.state.characters })
+	    );
+	  }
+	
+	});
+	
 	var sampleData = [{ name: 'Alex',
 	  blonde: false,
 	  brown: true,
@@ -19822,7 +19913,7 @@
 	  white: false,
 	  bald: true,
 	  glasses: false,
-	  beard: false,
+	  beard: true,
 	  hat: false,
 	  smile: true,
 	  female: false,
@@ -19882,74 +19973,62 @@
 	  smile: true,
 	  female: false,
 	  male: true,
-	  image: './img/frans.png' }];
-	
-	var GuessWhoBox = React.createClass({
-	  displayName: 'GuessWhoBox',
-	
-	
-	  getInitialState: function getInitialState() {
-	
-	    var guessWho = new GuessWho();
-	
-	    guessWho.addCharacter(sampleData[0]);
-	    guessWho.addCharacter(sampleData[1]);
-	
-	    return { guessWho: guessWho, characters: sampleData, comment: null };
-	  },
-	
-	  setGameCharacter: function setGameCharacter() {
-	    var characters = this.state.guessWho.charactersArray;
-	    this.state.guessWho.selectTheGameCharacter(characters);
-	  },
-	
-	  setCurrentCountry: function setCurrentCountry(country) {
-	    this.setState({ currentCountry: character });
-	  },
-	
-	  handleAttributeSubmit: function handleAttributeSubmit(attribute) {
-	    var comment = this.state.guessWho.doesCharacterHave(attribute);
-	    console.log("comment =", comment);
-	    this.setState({ comment: comment });
-	  },
-	
-	  handleGuessSubmit: function handleGuessSubmit(attribute) {
-	    var comment = this.state.guessWho.isTheCharacter(attribute);
-	    this.setState({ comment: comment });
-	  },
-	
-	  render: function render() {
-	    return React.createElement(
-	      'div',
-	      { className: 'gameBox' },
-	      React.createElement(
-	        'header',
-	        null,
-	        React.createElement('img', { src: 'img/guessWho.png', className: 'logo' }),
-	        React.createElement(
-	          'h3',
-	          null,
-	          'GUESS WHO!'
-	        ),
-	        React.createElement(
-	          'button',
-	          { onClick: this.setGameCharacter, className: 'button' },
-	          ' start new game '
-	        )
-	      ),
-	      React.createElement(
-	        'p',
-	        null,
-	        'let\'s narrow it down a bit.'
-	      ),
-	      React.createElement(CharacterSelect, { onAttributeSubmit: this.handleAttributeSubmit }),
-	      React.createElement(GuessResponse, { comment: this.state.comment }),
-	      React.createElement(CharacterGuess, { characters: this.state.characters, onGuessSubmit: this.handleGuessSubmit }),
-	      React.createElement(CharacterPictures, { characters: this.state.characters })
-	    );
-	  }
-	
-	});
+	  image: './img/frans.png' }, { name: 'George',
+	  blonde: false,
+	  brown: false,
+	  white: true,
+	  bald: false,
+	  glasses: false,
+	  beard: false,
+	  hat: true,
+	  smile: false,
+	  female: false,
+	  male: true,
+	  image: './img/george.png' }, { name: 'Herman',
+	  blonde: false,
+	  brown: false,
+	  white: false,
+	  bald: true,
+	  glasses: false,
+	  beard: false,
+	  hat: false,
+	  smile: true,
+	  female: false,
+	  male: true,
+	  image: './img/herman.png' }, { name: 'Joe',
+	  blonde: true,
+	  brown: false,
+	  white: false,
+	  bald: false,
+	  glasses: true,
+	  beard: false,
+	  hat: false,
+	  smile: true,
+	  female: false,
+	  male: true,
+	  image: './img/joe.png' }, { name: 'Maria',
+	  blonde: false,
+	  brown: true,
+	  white: false,
+	  bald: false,
+	  glasses: false,
+	  beard: false,
+	  hat: true,
+	  smile: true,
+	  female: true,
+	  male: false,
+	  image: './img/maria.png' }, { name: 'Max',
+	  blonde: false,
+	  brown: true,
+	  white: false,
+	  bald: false,
+	  glasses: false,
+	  beard: true,
+	  hat: true,
+	  smile: true,
+	  female: false,
+	  male: true,
+	  image: './img/max.png' }];
 	
 	module.exports = GuessWhoBox;
 
@@ -20192,10 +20271,12 @@
 	
 	  selectTheGameCharacter: function selectTheGameCharacter() {
 	    var character = _.sample(this.charactersArray);
+	    console.log(character);
 	    this.addCharacterToChosenCharacterArray(character);
 	  },
 	
 	  addCharacterToChosenCharacterArray: function addCharacterToChosenCharacterArray(character) {
+	    this.chosenCharacter = [];
 	    this.chosenCharacter.unshift(character);
 	  },
 	

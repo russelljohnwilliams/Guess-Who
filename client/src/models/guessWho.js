@@ -14,10 +14,12 @@ GuessWho.prototype = {
 
   selectTheGameCharacter: function(){
     var character = _.sample(this.charactersArray);
+    console.log(character);
     this.addCharacterToChosenCharacterArray(character);
   },
 
   addCharacterToChosenCharacterArray: function(character){
+    this.chosenCharacter = [];
     this.chosenCharacter.unshift(character);
   },
 
