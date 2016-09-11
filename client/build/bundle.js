@@ -20077,61 +20077,61 @@
 	      React.createElement(
 	        "option",
 	        { value: "blonde", key: "blonde" },
-	        "Is this person a natural blonde?"
+	        "Is this person a natural BLONDE?"
 	      ),
 	      ",",
 	      React.createElement(
 	        "option",
 	        { value: "brown", key: "brown" },
-	        "Is this person a brunette?"
+	        "Is this person a BRUNNETE?"
 	      ),
 	      ",",
 	      React.createElement(
 	        "option",
 	        { value: "white", key: "white" },
-	        "Has this person got white hair"
+	        "Has this person got WHITE HAIR"
 	      ),
 	      ",",
 	      React.createElement(
 	        "option",
 	        { value: "bald", key: "bald" },
-	        "Is this person a baldy?"
+	        "Is this person a BALDY?"
 	      ),
 	      ",",
 	      React.createElement(
 	        "option",
 	        { value: "glasses", key: "glasses" },
-	        "Is this person wearing spectacles?"
+	        "Is this person wearing GLASSES?"
 	      ),
 	      ",",
 	      React.createElement(
 	        "option",
 	        { value: "beard", key: "beard" },
-	        "Is there facial hair of some description present?"
+	        "Is there A BEARD or MOUSTACHE of some description?"
 	      ),
 	      ",",
 	      React.createElement(
 	        "option",
 	        { value: "hat", key: "hat" },
-	        "Is this person wearing a hat?"
+	        "Is this person wearing a HAT?"
 	      ),
 	      ",",
 	      React.createElement(
 	        "option",
 	        { value: "smile", key: "smile" },
-	        "Does this person have a beaming great big smile?"
+	        "Does this person have a beaming great big SMILE?"
 	      ),
 	      ",",
 	      React.createElement(
 	        "option",
 	        { value: "female", key: "female" },
-	        "Is this person a lady of some description?"
+	        "Is this person a LADY of some description?"
 	      ),
 	      ",",
 	      React.createElement(
 	        "option",
 	        { value: "male", key: "male" },
-	        "Is the person of the male variety?"
+	        "Is the person a MAN?"
 	      ),
 	      ","
 	    );
@@ -20201,7 +20201,7 @@
 	
 	  if (!props.comment) {
 	    return React.createElement(
-	      "div",
+	      "p",
 	      null,
 	      "make a guess"
 	    );
