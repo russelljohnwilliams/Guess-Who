@@ -19821,7 +19821,7 @@
 	
 	  changeOpacity: function changeOpacity() {
 	    var i = 0;
-	    for (i = 0; i < 10; i++) {
+	    for (i = 0; i < sampleData.length; i++) {
 	      console.log(i);
 	      var div1 = document.getElementById(i);
 	      if (div1.style.opacity == '0.3') {
