@@ -21,7 +21,7 @@ describe('guessWho', function(){
     smile: false, 
     female: false,
     male: true,
-    pic: './src/models/img/alfred.png'});
+    image: '../models/img/alfred.png'});
     
     anita = new Character({name:'Anita',
     blonde: true, 
@@ -34,7 +34,7 @@ describe('guessWho', function(){
     smile: true, 
     female: true,
     male: false,
-    pic: './src/models/img/anita.png'});
+    image: '../models/img/anita.png'});
 
     guessWho.addCharacter(alfred);
     guessWho.addCharacter(anita);  

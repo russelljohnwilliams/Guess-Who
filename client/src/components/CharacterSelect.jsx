@@ -2,21 +2,20 @@ var React = require('react')
 
 var CharacterSelect = React.createClass({
 
-  getInitialState: function(){
-    return {attribute: null}
-  },
 
-  handleSelect: function(e){
+   handleSelect: function(e){
     e.preventDefault()
     var attribute = e.target.value
-    this.setState({attribute: attribute})
+    console.log("what is the attribute? ", attribute)
+
     this.props.onAttributeSubmit(attribute)
+   
   },
 
   render: function(){
    
     return(
-      <select value="nothing" onChange={this.handleSelect}  >
+      <select className="dropDown" value="nothing" onChange={this.handleSelect}  >
       <option key="nowt">
       Please select 
       </option>,

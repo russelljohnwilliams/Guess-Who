@@ -19756,7 +19756,34 @@
 	
 	var React = __webpack_require__(1);
 	var CharacterSelect = __webpack_require__(160);
+	var CharacterGuess = __webpack_require__(161);
+	var GuessResponse = __webpack_require__(162);
+	var CharacterPictures = __webpack_require__(163);
 	var GuessWho = __webpack_require__(164);
+	
+	var sampleData = [{ name: 'Alfred',
+	  blonde: true,
+	  brown: false,
+	  white: false,
+	  bald: false,
+	  glasses: false,
+	  beard: true,
+	  hat: false,
+	  smile: false,
+	  female: false,
+	  male: true,
+	  image: './img/alfred.png' }, { name: 'Anita',
+	  blonde: true,
+	  brown: false,
+	  white: false,
+	  bald: false,
+	  glasses: false,
+	  beard: false,
+	  hat: false,
+	  smile: true,
+	  female: true,
+	  male: false,
+	  image: './img/anita.png' }];
 	
 	var GuessWhoBox = React.createClass({
 	  displayName: 'GuessWhoBox',
@@ -19764,68 +19791,62 @@
 	
 	  getInitialState: function getInitialState() {
 	
-	    var characters = [{ name: 'Alfred',
-	      blonde: true,
-	      brown: false,
-	      white: false,
-	      bald: false,
-	      glasses: false,
-	      beard: true,
-	      hat: false,
-	      smile: false,
-	      female: false,
-	      male: true,
-	      pic: './src/models/img/alfred.png' }, { name: 'Anita',
-	      blonde: true,
-	      brown: false,
-	      white: false,
-	      bald: false,
-	      glasses: false,
-	      beard: false,
-	      hat: false,
-	      smile: true,
-	      female: true,
-	      male: false,
-	      pic: './src/models/img/anita.png' }];
-	
 	    var guessWho = new GuessWho();
 	
-	    guessWho.addCharacter(characters[0]);
-	    guessWho.addCharacter(characters[1]);
+	    guessWho.addCharacter(sampleData[0]);
+	    guessWho.addCharacter(sampleData[1]);
 	
-	    return { guessWho: guessWho, characters: characters };
+	    return { guessWho: guessWho, characters: sampleData, comment: null };
 	  },
 	
 	  setGameCharacter: function setGameCharacter() {
 	    var characters = this.state.guessWho.charactersArray;
-	    console.log("the character be =", characters);
 	    this.state.guessWho.selectTheGameCharacter(characters);
-	    console.log("character is", this.state.guessWho.chosenCharacter[0]);
+	  },
+	
+	  setCurrentCountry: function setCurrentCountry(country) {
+	    this.setState({ currentCountry: character });
 	  },
 	
 	  handleAttributeSubmit: function handleAttributeSubmit(attribute) {
+	    var comment = this.state.guessWho.doesCharacterHave(attribute);
+	    console.log("comment =", comment);
+	    this.setState({ comment: comment });
+	  },
 	
-	    // var result = this.state.guessWho.doesCharacterHave(attribute);
-	    console.log("Handle this here attribute", attribute);
-	    this.state.guessWho.doesCharacterHave(attribute);
-	    // this.setState({selectedAccount: result})
+	  handleGuessSubmit: function handleGuessSubmit(attribute) {
+	    var comment = this.state.guessWho.isTheCharacter(attribute);
+	    this.setState({ comment: comment });
 	  },
 	
 	  render: function render() {
 	    return React.createElement(
 	      'div',
-	      null,
+	      { className: 'gameBox' },
 	      React.createElement(
-	        'h3',
+	        'header',
 	        null,
-	        'Guess Who!'
+	        React.createElement('img', { src: 'img/guessWho.png', className: 'logo' }),
+	        React.createElement(
+	          'h3',
+	          null,
+	          'GUESS WHO!'
+	        ),
+	        React.createElement(
+	          'button',
+	          { onClick: this.setGameCharacter, className: 'button' },
+	          ' start new game '
+	        )
 	      ),
 	      React.createElement(
-	        'button',
-	        { onClick: this.setGameCharacter, className: 'button' },
-	        ' start new game '
+	        'p',
+	        null,
+	        'let\'s narrow it down a bit.'
 	      ),
-	      React.createElement(CharacterSelect, { onAttributeSubmit: this.handleAttributeSubmit })
+	      React.createElement(CharacterSelect, { onAttributeSubmit: this.handleAttributeSubmit }),
+	      React.createElement(GuessResponse, { comment: this.state.comment }),
+	      React.createElement(CharacterGuess, { characters: this.state.characters, onGuessSubmit: this.handleGuessSubmit }),
+	      React.createElement(CharacterPictures, { characters: this.state.characters })
 	    );
 	  }
 	
@@ -19845,14 +19866,11 @@
 	  displayName: "CharacterSelect",
 	
 	
-	  getInitialState: function getInitialState() {
-	    return { attribute: null };
-	  },
-	
 	  handleSelect: function handleSelect(e) {
 	    e.preventDefault();
 	    var attribute = e.target.value;
-	    this.setState({ attribute: attribute });
+	    console.log("what is the attribute? ", attribute);
+	
 	    this.props.onAttributeSubmit(attribute);
 	  },
 	
@@ -19860,7 +19878,7 @@
 	
 	    return React.createElement(
 	      "select",
-	      { value: "nothing", onChange: this.handleSelect },
+	      { className: "dropDown", value: "nothing", onChange: this.handleSelect },
 	      React.createElement(
 	        "option",
 	        { key: "nowt" },
@@ -19934,9 +19952,127 @@
 	module.exports = CharacterSelect;
 
 /***/ },
-/* 161 */,
-/* 162 */,
-/* 163 */,
+/* 161 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	var React = __webpack_require__(1);
+	
+	var CharacterGuess = React.createClass({
+	  displayName: 'CharacterGuess',
+	
+	
+	  getInitialState: function getInitialState() {
+	    return { character: null };
+	  },
+	
+	  handleChange: function handleChange(e) {
+	    var name = e.target.value;
+	    this.setState({ character: name });
+	    this.props.onGuessSubmit(name);
+	  },
+	
+	  handleSelect: function handleSelect(e) {
+	    e.preventDefault();
+	    var attribute = e.target.value;
+	    this.props.onGuessSubmit(attribute);
+	  },
+	
+	  render: function render() {
+	    var characters = this.props.characters.map(function (character) {
+	      return React.createElement(
+	        'option',
+	        { value: character.name, key: character.name },
+	        'I think it might be ',
+	        character.name
+	      );
+	    }.bind(this));
+	    return React.createElement(
+	      'select',
+	      { value: this.state.character, onChange: this.handleSelect },
+	      characters
+	    );
+	  }
+	});
+	
+	module.exports = CharacterGuess;
+
+/***/ },
+/* 162 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+	
+	var React = __webpack_require__(1);
+	
+	var GuessResponse = function GuessResponse(props) {
+	
+	  console.log("comment?????", props.comment);
+	
+	  if (!props.comment) {
+	    return React.createElement(
+	      "div",
+	      null,
+	      "make a guess"
+	    );
+	  }
+	  return React.createElement(
+	    "div",
+	    null,
+	    React.createElement(
+	      "p",
+	      null,
+	      props.comment
+	    )
+	  );
+	};
+	
+	module.exports = GuessResponse;
+
+/***/ },
+/* 163 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	var React = __webpack_require__(1);
+	
+	var CharacterPictures = React.createClass({
+	  displayName: 'CharacterPictures',
+	
+	
+	  bigX: function bigX(e) {
+	    var newIndex = e.target.id;
+	
+	    var div1 = document.getElementById(newIndex);
+	    if (div1.style.opacity == '1') {
+	      div1.style.opacity = '0.3';
+	    } else if (div1.style.opacity = '0.3') {
+	      div1.style.opacity = '1';
+	    }
+	  },
+	
+	  render: function render() {
+	
+	    var characters = this.props.characters.map(function (character, index) {
+	      return React.createElement(
+	        'div',
+	        { className: 'characterPic' },
+	        React.createElement('img', { src: character.image, onClick: this.bigX, id: index })
+	      );
+	    }.bind(this));
+	    return React.createElement(
+	      'div',
+	      null,
+	      characters
+	    );
+	  }
+	});
+	
+	module.exports = CharacterPictures;
+
+/***/ },
 /* 164 */
 /***/ function(module, exports, __webpack_require__) {
 
@@ -19969,6 +20105,7 @@
 	  },
 	
 	  isTheCharacter: function isTheCharacter(attribute) {
+	    attribute = _.toString(attribute);
 	    if (attribute === this.chosenCharacter[0].name) {
 	      return "yes, the character is called " + attribute;
 	    } else {
@@ -19978,20 +20115,15 @@
 	
 	  doesCharacterHave: function doesCharacterHave(value) {
 	
-	    console.log(value);
-	
 	    value = _.toString(value);
-	    console.log(value);
 	
 	    switch (value) {
 	      case "blonde":
 	
 	        if (this.chosenCharacter[0].blonde === true) {
-	          // return "Yes, they do have blonde hair.";
-	          console.log("Yes, they do have blonde hair.");
+	          return "Yes, they do have blonde hair.";
 	        } else {
-	          // return "Nope, they don't have blonde hair.";
-	          console.log("Nope, they don't have blonde hair.");
+	          return "Nope, they don't have blonde hair.";
 	        }
 	        break;
 	
@@ -20000,8 +20132,7 @@
 	        if (this.chosenCharacter[0].brown === true) {
 	          return "Yes, they do have brown hair.";
 	        } else {
-	          // return "Nope, they don't have brown hair actually.";
-	          console.log("Nope, they don't have brown hair actually.");
+	          return "Nope, they don't have brown hair actually.";
 	        }
 	        break;
 	

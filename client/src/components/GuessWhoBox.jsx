@@ -1,67 +1,83 @@
 var React = require('react')
 var CharacterSelect = require('./CharacterSelect')
+var CharacterGuess = require('./CharacterGuess')
+var GuessResponse = require('./GuessResponse')
+var CharacterPictures = require('./CharacterPictures')
 var GuessWho = require('../models/guessWho')
+
+var sampleData = [
+{name:'Alfred',
+blonde: true, 
+brown: false,
+white: false,
+bald: false,
+glasses: false, 
+beard: true, 
+hat: false,  
+smile: false, 
+female: false,
+male: true,
+image: './img/alfred.png'},
+
+{name:'Anita',
+blonde:true, 
+brown: false,
+white: false,
+bald: false,
+glasses:false, 
+beard:false, 
+hat:false,  
+smile:true, 
+female: true,
+male: false,
+image: './img/anita.png'}]
 
 var GuessWhoBox = React.createClass({
 
   getInitialState: function(){
 
-    var characters = [
-    {name:'Alfred',
-    blonde: true, 
-    brown: false,
-    white: false,
-    bald: false,
-    glasses: false, 
-    beard: true, 
-    hat: false,  
-    smile: false, 
-    female: false,
-    male: true,
-    pic: './src/models/img/alfred.png'},
-    
-    {name:'Anita',
-    blonde:true, 
-    brown: false,
-    white: false,
-    bald: false,
-    glasses:false, 
-    beard:false, 
-    hat:false,  
-    smile:true, 
-    female: true,
-    male: false,
-    pic: './src/models/img/anita.png'}]
-
     var guessWho = new GuessWho()
 
-    guessWho.addCharacter(characters[0])
-    guessWho.addCharacter(characters[1])
+    guessWho.addCharacter(sampleData[0])
+    guessWho.addCharacter(sampleData[1])
 
-    return{guessWho: guessWho, characters:characters}
+    return{guessWho: guessWho, characters:sampleData, comment:null}
   },
 
   setGameCharacter: function(){
     var characters = this.state.guessWho.charactersArray
-    console.log("the character be =", characters)
     this.state.guessWho.selectTheGameCharacter(characters)
-    console.log("character is", this.state.guessWho.chosenCharacter[0])
+  },
+
+  setCurrentCountry: function(country){
+    this.setState({currentCountry: character})
   },
 
   handleAttributeSubmit: function(attribute){
-    
-    // var result = this.state.guessWho.doesCharacterHave(attribute);
-    console.log("Handle this here attribute", attribute)
-    this.state.guessWho.doesCharacterHave(attribute)
-    // this.setState({selectedAccount: result})
+    var comment = this.state.guessWho.doesCharacterHave(attribute)
+    console.log("comment =", comment)
+    this.setState({comment: comment})
+  },
+
+  handleGuessSubmit: function(attribute){
+    var comment = this.state.guessWho.isTheCharacter(attribute)
+    this.setState({comment: comment})
   },
 
   render: function(){
     return(
-      <div>
-      <h3>Guess Who!</h3>
+      <div className="gameBox">
+      <header>
+      <img src="img/guessWho.png" className="logo"/>
+      <h3>GUESS WHO!</h3>
       <button onClick={this.setGameCharacter} className="button"> start new game </button> 
+      </header> 
+      <p>let's narrow it down a bit.</p>
       <CharacterSelect onAttributeSubmit={this.handleAttributeSubmit}/>
+      <GuessResponse comment={this.state.comment}/>
+      <CharacterGuess characters={this.state.characters} onGuessSubmit={this.handleGuessSubmit}/>    
+      <CharacterPictures characters={this.state.characters}/>
+
       </div>
       )
   }
