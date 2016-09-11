@@ -19756,7 +19756,7 @@
 	
 	var React = __webpack_require__(1);
 	var CharacterSelect = __webpack_require__(160);
-	var GuessWho = __webpack_require__(163);
+	var GuessWho = __webpack_require__(164);
 	
 	var GuessWhoBox = React.createClass({
 	  displayName: 'GuessWhoBox',
@@ -19936,12 +19936,13 @@
 /***/ },
 /* 161 */,
 /* 162 */,
-/* 163 */
+/* 163 */,
+/* 164 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
 	
-	var _ = __webpack_require__(164);
+	var _ = __webpack_require__(165);
 	
 	var GuessWho = function GuessWho() {
 	  this.charactersArray = [];
@@ -20093,7 +20094,7 @@
 	module.exports = GuessWho;
 
 /***/ },
-/* 164 */
+/* 165 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __WEBPACK_AMD_DEFINE_RESULT__;/* WEBPACK VAR INJECTION */(function(global, module) {/**
@@ -36830,10 +36831,10 @@
 	  }
 	}.call(this));
 	
-	/* WEBPACK VAR INJECTION */}.call(exports, (function() { return this; }()), __webpack_require__(165)(module)))
+	/* WEBPACK VAR INJECTION */}.call(exports, (function() { return this; }()), __webpack_require__(166)(module)))
 
 /***/ },
-/* 165 */
+/* 166 */
 /***/ function(module, exports) {
 
 	module.exports = function(module) {
