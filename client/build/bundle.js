@@ -19754,8 +19754,6 @@
 
 	'use strict';
 	
-	function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-	
 	var React = __webpack_require__(1);
 	var CharacterSelect = __webpack_require__(160);
 	var CharacterGuess = __webpack_require__(161);
@@ -19803,6 +19801,7 @@
 	    var characters = this.state.guessWho.charactersArray;
 	    // console.log("setGameCharater", characters)
 	    this.state.guessWho.selectTheGameCharacter(characters);
+	    this.changeOpacity();
 	  },
 	
 	  setCurrentCountry: function setCurrentCountry(country) {
@@ -19832,8 +19831,6 @@
 	  },
 	
 	  render: function render() {
-	    var _React$createElement;
-	
 	    return React.createElement(
 	      'div',
 	      { className: 'gameBox' },
@@ -19848,7 +19845,7 @@
 	        ),
 	        React.createElement(
 	          'button',
-	          (_React$createElement = { onClick: this.setGameCharacter }, _defineProperty(_React$createElement, 'onClick', this.changeOpacity), _defineProperty(_React$createElement, 'className', 'button'), _React$createElement),
+	          { onClick: this.setGameCharacter, className: 'button' },
 	          ' start new game '
 	        )
 	      ),

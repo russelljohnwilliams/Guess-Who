@@ -45,6 +45,7 @@ setGameCharacter: function(){
   var characters = this.state.guessWho.charactersArray
 // console.log("setGameCharater", characters)
 this.state.guessWho.selectTheGameCharacter(characters)
+this.changeOpacity()
 },
 
 setCurrentCountry: function(country){
@@ -79,7 +80,7 @@ render: function(){
     <header>
     <img src="img/guessWho.png" className="logo"/>
     <h3>GUESS WHO!</h3>
-    <button onClick={this.setGameCharacter} onClick={this.changeOpacity} className="button"> start new game </button> 
+    <button onClick={this.setGameCharacter} className="button"> start new game </button> 
     </header> 
     <p>let's narrow it down a bit.</p>
     <CharacterSelect onAttributeSubmit={this.handleAttributeSubmit}/>
