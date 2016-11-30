@@ -19769,6 +19769,11 @@
 	
 	    var guessWho = new GuessWho();
 	
+	    // var characters = sampleData.map(function(character){
+	    //  this.guessWho.addCharacter(character)
+	    //  }.bind(this))
+	    //  this.setGameCharacter()
+	
 	    guessWho.addCharacter(sampleData[0]);
 	    guessWho.addCharacter(sampleData[1]);
 	    guessWho.addCharacter(sampleData[2]);
@@ -19789,17 +19794,8 @@
 	    return { guessWho: guessWho, characters: sampleData, comment: null };
 	  },
 	
-	  // startGame: function(){
-	  //   console.log("startGame", sampleData)
-	  //   var characters = sampleData.map(function(character){
-	  //   this.guessWho.addCharacter(character)
-	  //   }.bind(this))
-	  //   this.setGameCharacter()
-	  // },
-	
 	  setGameCharacter: function setGameCharacter() {
 	    var characters = this.state.guessWho.charactersArray;
-	    // console.log("setGameCharater", characters)
 	    this.state.guessWho.selectTheGameCharacter(characters);
 	    this.changeOpacity();
 	  },
@@ -19810,7 +19806,6 @@
 	
 	  handleAttributeSubmit: function handleAttributeSubmit(attribute) {
 	    var comment = this.state.guessWho.doesCharacterHave(attribute);
-	    // console.log("handleAttributeSubmit =", comment)
 	    this.setState({ comment: comment });
 	  },
 	
@@ -20257,6 +20252,7 @@
 	      characters
 	    );
 	  }
+	
 	});
 	
 	module.exports = CharacterPictures;
@@ -20304,112 +20300,113 @@
 	    }
 	  },
 	
-	  doesCharacterHave: function doesCharacterHave(value) {
+	  // doesCharacterHave: function(value){
 	
-	    value = _.toString(value);
+	  //   value = _.toString(value)
 	
-	    switch (value) {
-	      case "blonde":
+	  //   switch(value){ 
+	  //     case "blonde":
 	
-	        if (this.chosenCharacter[0].blonde === true) {
-	          return "Yes, they do have blonde hair.";
-	        } else {
-	          return "Nope, they don't have blonde hair.";
-	        }
-	        break;
+	  //     if(this.chosenCharacter[0].blonde === true) {
+	  //       return "Yes, they do have blonde hair.";
 	
-	      case "brown":
+	  //     } else {
+	  //       return  "Nope, they don't have blonde hair.";
+	  //     }
+	  //     break;
 	
-	        if (this.chosenCharacter[0].brown === true) {
-	          return "Yes, they do have brown hair.";
-	        } else {
-	          return "Nope, they don't have brown hair actually.";
-	        }
-	        break;
+	  //     case "brown":
 	
-	      case "white":
+	  //     if(this.chosenCharacter[0].brown === true) {
+	  //       return "Yes, they do have brown hair.";
+	  //     } else {
+	  //       return "Nope, they don't have brown hair actually.";
+	  //     }
+	  //     break;
 	
-	        if (this.chosenCharacter[0].white === true) {
-	          return "Yup, they got's the white hair.";
-	        } else {
-	          return "White? White hair? No I don't think so.";
-	        }
-	        break;
+	  //     case "white":
 	
-	      case "bald":
+	  //     if(this.chosenCharacter[0].white === true) {
+	  //       return "Yup, they got's the white hair.";
+	  //     } else {
+	  //       return "White? White hair? No I don't think so.";
+	  //     }
+	  //     break;
 	
-	        if (this.chosenCharacter[0].bald === true) {
-	          return "Haa haa! Yeah, the poor sod is a baldy.";
-	        } else {
-	          return "Nope, not that unlucky.";
-	        }
-	        break;
+	  //     case "bald":
 	
-	      case "glasses":
+	  //     if(this.chosenCharacter[0].bald === true) {
+	  //       return "Haa haa! Yeah, the poor sod is a baldy.";
+	  //     } else {
+	  //       return "Nope, not that unlucky.";
+	  //     }
+	  //     break;
 	
-	        if (this.chosenCharacter[0].glasses === true) {
-	          return "Yes, they have a very fetching pair of spectacles.";
-	        } else {
-	          return "Nope, they don't wear glasses.";
-	        }
-	        break;
+	  //     case "glasses":
 	
-	      case "beard":
+	  //     if(this.chosenCharacter[0].glasses === true) {
+	  //       return "Yes, they have a very fetching pair of spectacles.";
+	  //     } else {
+	  //       return "Nope, they don't wear glasses.";
+	  //     }
+	  //     break;
 	
-	        if (this.chosenCharacter[0].beard === true) {
-	          return "Yeah, stupid hipster.";
-	        } else {
-	          return "Nah, they have a face as smooth as a baby's bottom.";
-	        }
-	        break;
+	  //     case "beard":
 	
-	      case "hat":
+	  //     if(this.chosenCharacter[0].beard === true) {
+	  //       return "Yeah, stupid hipster.";
+	  //     } else {
+	  //       return "Nah, they have a face as smooth as a baby's bottom.";
+	  //     }
+	  //     break;
 	
-	        if (this.chosenCharacter[0].hat === true) {
-	          return "Yes, they are indeed wearing a hat.";
-	        } else {
-	          return "No hat today.";
-	        }
-	        break;
+	  //     case "hat":
 	
-	      case "smile":
+	  //     if(this.chosenCharacter[0].hat === true) {
+	  //       return "Yes, they are indeed wearing a hat.";
+	  //     } else {
+	  //       return "No hat today.";
+	  //     }
+	  //     break;
 	
-	        if (this.chosenCharacter[0].smile === true) {
-	          return "A big bright beautiful smile is plastered all over their face.";
-	        } else {
-	          return "Hmmm, is it a frown, perhaps a grimace. Whatever it is, it's not a smile.";
-	        }
-	        break;
+	  //     case "smile":
 	
-	      case "female":
+	  //     if(this.chosenCharacter[0].smile === true) {
+	  //       return "A big bright beautiful smile is plastered all over their face.";
+	  //     } else {
+	  //       return "Hmmm, is it a frown, perhaps a grimace. Whatever it is, it's not a smile.";
+	  //     }
+	  //     break;
 	
-	        if (this.chosenCharacter[0].female === true) {
-	          return "She may not be a lady, but she's all woman.";
-	        } else {
-	          return "That's no lady... that's a man!";
-	        }
-	        break;
+	  //     case "female":
 	
-	      case "male":
+	  //     if(this.chosenCharacter[0].female === true) {
+	  //       return "She may not be a lady, but she's all woman.";
+	  //     } else {
+	  //       return "That's no lady... that's a man!";
+	  //     }
+	  //     break;
 	
-	        if (this.chosenCharacter[0].male === true) {
-	          return "A man? yes, technically.";
-	        } else {
-	          return "That aint no man... Definately a woman, born that way or not.";
-	        }
-	        break;
+	  //     case "male":
 	
+	  //     if(this.chosenCharacter[0].male === true) {
+	  //       return "A man? yes, technically.";
+	  //     } else {
+	  //       return "That aint no man... Definately a woman, born that way or not.";
+	  //     }
+	  //     break;
+	
+	  //   }
+	  // }
+	
+	  doesCharacterHave: function doesCharacterHave(attribute) {
+	    var key = this.chosenCharacter[0];
+	    if (key[attribute] === true) {
+	      return "Yup";
+	    } else {
+	      return "Nope";
 	    }
 	  }
-	
-	  //  doesCharacterHave: function(attribute){
-	  //   var key = this.chosenCharacter[0]
-	  //   if ( key.attribute === 'yes'){
-	  //     return "yes they do";
-	  //   } else if ( key.glasses === 'no'){
-	  //    return "no they do not";
-	  //  }
-	  // },
 	
 	};
 	

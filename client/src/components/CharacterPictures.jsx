@@ -13,9 +13,6 @@ var CharacterPictures = React.createClass({
           }
   },
 
-
-
-
   render: function(){
 
     var characters = this.props.characters.map(function(character, index){
@@ -23,14 +20,13 @@ var CharacterPictures = React.createClass({
         <div className="characterPic" >
         <img src = {character.image} onClick={this.changeOpacity} id={index} className="pictures"/>
         </div>
-        
         )
-
     }.bind(this))
    return(<div>
    {characters}
    </div>)
   }
+  
   })
 
 

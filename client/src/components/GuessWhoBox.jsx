@@ -13,6 +13,12 @@ var GuessWhoBox = React.createClass({
 
     var guessWho = new GuessWho()
 
+
+     // var characters = sampleData.map(function(character){
+     //  this.guessWho.addCharacter(character)
+     //  }.bind(this))
+     //  this.setGameCharacter()
+
     guessWho.addCharacter(sampleData[0])
     guessWho.addCharacter(sampleData[1])
     guessWho.addCharacter(sampleData[2])
@@ -33,17 +39,9 @@ var GuessWhoBox = React.createClass({
     return{guessWho: guessWho, characters:sampleData, comment:null}
   },
 
-// startGame: function(){
-//   console.log("startGame", sampleData)
-//   var characters = sampleData.map(function(character){
-//   this.guessWho.addCharacter(character)
-//   }.bind(this))
-//   this.setGameCharacter()
-// },
 
 setGameCharacter: function(){
   var characters = this.state.guessWho.charactersArray
-// console.log("setGameCharater", characters)
 this.state.guessWho.selectTheGameCharacter(characters)
 this.changeOpacity()
 },
@@ -54,7 +52,6 @@ setCurrentCountry: function(country){
 
 handleAttributeSubmit: function(attribute){
   var comment = this.state.guessWho.doesCharacterHave(attribute)
-// console.log("handleAttributeSubmit =", comment)
 this.setState({comment: comment})
 },
 
