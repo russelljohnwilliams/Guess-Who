@@ -9,7 +9,7 @@ var CharacterPictures = React.createClass({
           div1.style.opacity = '1'
           if (div1.style.opacity == '1') {
               div1.style.opacity = '0.3'
-          } else if (div1.style.opacity = '0.3'){
+          } else if (div1.style.opacity == '0.3'){
               div1.style.opacity = '1'
           }
   },
