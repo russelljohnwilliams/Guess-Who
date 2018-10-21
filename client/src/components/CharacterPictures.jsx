@@ -6,7 +6,7 @@ var CharacterPictures = React.createClass({
     var newIndex = e.target.id
    
           var div1 = document.getElementById(newIndex)
-          if !(div1.style.opacity == '0.3') {
+          if (div1.style.opacity == '1') {
               div1.style.opacity = '0.3'
           } else if (div1.style.opacity = '0.3'){
               div1.style.opacity = '1'
