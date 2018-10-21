@@ -8,8 +8,8 @@ var CharacterPictures = React.createClass({
           var div1 = document.getElementById(newIndex)
           div1.style.opacity = '1'
           if (div1.style.opacity == '1') {
-              div1.style.opacity = '0.3'
-          } else if (div1.style.opacity == '0.3'){
+              div1.style.opacity = '0.1'
+          } else if (div1.style.opacity == '0.2'){
               div1.style.opacity = '1'
           }
   },
